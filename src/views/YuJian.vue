@@ -5,9 +5,7 @@
 </template>
 
 <script>
-export default {
-  name: 'YuJian'
-}
+export default {}
 </script>
 
 <style scoped>

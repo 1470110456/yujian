@@ -2,9 +2,15 @@
   <div>
     <nav>
       <ul>
-        <router-link active-class="ripple" tag="li" to="/yujian">语见</router-link>
-        <router-link active-class="ripple" tag="li" to="/msglist">消息</router-link>
-        <router-link active-class="ripple" tag="li" to="/usercenter">我的</router-link>
+        <router-link active-class="ripple" tag="li" to="/yujian">
+          <img src="../iconfont/glob.svg" alt="语见" />
+        </router-link>
+        <router-link active-class="ripple" tag="li" to="/msglist">
+          <img src="../iconfont/msg.svg" alt="消息"/>
+        </router-link>
+        <router-link active-class="ripple" tag="li" to="/usercenter">
+          <img src="../iconfont/personalcenter.svg" alt="我的"/>
+        </router-link>
       </ul>
     </nav>
   </div>
@@ -29,9 +35,14 @@ export default {}
 
       li {
         flex: 1;
+        padding-top: 5px;
         line-height: 50px;
         text-align: center;
-        padding-bottom: 7px;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }
@@ -40,7 +51,7 @@ export default {}
     padding-left: 10px;
     padding-right: 10px;
     box-shadow: 0 0 5px 0 gray;
-    background-color: rgba(125, 125, 125, 0.2);
+    background-color: rgba(125, 125, 125, 0.1);
     border-radius: 10px;
     transition-duration: 0.3s;
     color: black;

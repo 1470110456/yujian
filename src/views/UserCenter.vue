@@ -5,9 +5,7 @@
 </template>
 
 <script>
-export default {
-  name: 'UserCenter'
-}
+export default {}
 </script>
 
 <style scoped>

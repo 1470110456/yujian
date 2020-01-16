@@ -28,5 +28,6 @@ export default {
   html {
     height: 100%;
     background: whitesmoke;
+    text-align: center;
   }
 </style>
