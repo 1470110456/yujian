@@ -1,16 +1,17 @@
 <template>
   <div>
-    MsgList
+    Things
   </div>
 </template>
 
 <script>
 export default {
   mounted () {
-    this.$store.commit('ansWhere', '消息')
+    this.$store.commit('ansWhere', '动态')
   }
 }
 </script>
 
 <style scoped>
+
 </style>

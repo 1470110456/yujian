@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MsgList from '../views/MsgList'
-import UserCenter from '../views/UserCenter'
 import YuJian from '../views/YuJian'
+import Things from '../views/Things'
+import Center from '../views/Center'
 
 Vue.use(VueRouter)
 
@@ -16,16 +17,20 @@ const router = new VueRouter({
       component: MsgList
     },
     {
-      path: '/usercenter',
-      component: UserCenter
+      path: '/things',
+      component: Things
     },
     {
       path: '/yujian',
       component: YuJian
     },
     {
+      path: '/center',
+      component: Center
+    },
+    {
       path: '*',
-      redirect: '/usercenter'
+      redirect: '/yujian'
     }
   ]
 })

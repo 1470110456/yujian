@@ -8,8 +8,8 @@
         <router-link active-class="ripple" tag="li" to="/msglist">
           <img src="../iconfont/msg.svg" alt="消息"/>
         </router-link>
-        <router-link active-class="ripple" tag="li" to="/usercenter">
-          <img src="../iconfont/things.svg" alt="我的"/>
+        <router-link active-class="ripple" tag="li" to="/things">
+          <img src="../iconfont/things.svg" alt="动态"/>
         </router-link>
       </ul>
     </nav>
@@ -37,7 +37,6 @@ export default {}
         flex: 1;
         padding-top: 5px;
         line-height: 50px;
-        text-align: center;
 
         img {
           width: 30px;

@@ -1,11 +1,15 @@
 <template>
   <div>
-    yujian
+    Yujian
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  mounted () {
+    this.$store.commit('ansWhere', '语见')
+  }
+}
 </script>
 
 <style scoped>
