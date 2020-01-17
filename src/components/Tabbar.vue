@@ -9,7 +9,7 @@
           <img src="../iconfont/msg.svg" alt="消息"/>
         </router-link>
         <router-link active-class="ripple" tag="li" to="/usercenter">
-          <img src="../iconfont/personalcenter.svg" alt="我的"/>
+          <img src="../iconfont/things.svg" alt="我的"/>
         </router-link>
       </ul>
     </nav>
@@ -50,8 +50,7 @@ export default {}
   .ripple {
     padding-left: 10px;
     padding-right: 10px;
-    box-shadow: 0 0 5px 0 gray;
-    background-color: rgba(125, 125, 125, 0.1);
+    box-shadow: 0 5px 60px -20px blue;
     border-radius: 10px;
     transition-duration: 0.3s;
     color: black;
