@@ -46,10 +46,11 @@ export default {}
     }
   }
 
+  // 选中时的效果
   .ripple {
     padding-left: 10px;
     padding-right: 10px;
-    box-shadow: 0 5px 60px -20px blue;
+    box-shadow: 0 6px 60px -18px blue;
     border-radius: 10px;
     transition-duration: 0.3s;
     color: black;

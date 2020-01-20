@@ -1,0 +1,102 @@
+[
+  {
+    "contact": {
+      "name": "张一波",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    "lastMsg": "你好，朋友，这里是语见。",
+    "msgDate": "2020-01-16",
+    "msgTime": "12:20",
+    "newMsgNum": "1"
+  },
+  {
+    "contact": {
+      "name": "李成昊",
+      "avatar": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    "lastMsg": "在吗？",
+    "msgDate": "2020-01-17",
+    "msgTime": "14:20",
+    "newMsgNum": "2"
+  },
+  {
+    "contact": {
+      "name": "李正泽",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    "lastMsg": "啊哈哈哈哈。。。。哈了个哈，嗝哈哈哈hh",
+    "msgDate": "2020-01-18",
+    "msgTime": "16:20",
+    "newMsgNum": "3"
+  },
+  {
+    "contact": {
+      "name": "杨鹏",
+      "avatar": "https://randomuser.me/api/portraits/men/4.jpg"
+    },
+    "lastMsg": "我是杨鹏，你是那里人呢？",
+    "msgDate": "2020-01-19",
+    "msgTime": "18:20",
+    "newMsgNum": "4"
+  },
+  {
+    "contact": {
+      "name": "刘宇佳",
+      "avatar": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    "lastMsg": "在？为什么恰烂钱？",
+    "msgDate": "2020-01-20",
+    "msgTime": "20:20",
+    "newMsgNum": "5"
+  },
+  {
+    "contact": {
+      "name": "张一波",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    "lastMsg": "你好，朋友，这里是语见。",
+    "msgDate": "2020-01-16",
+    "msgTime": "12:20",
+    "newMsgNum": "1"
+  },
+  {
+    "contact": {
+      "name": "李成昊",
+      "avatar": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    "lastMsg": "在吗？",
+    "msgDate": "2020-01-17",
+    "msgTime": "14:20",
+    "newMsgNum": "2"
+  },
+  {
+    "contact": {
+      "name": "李正泽",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    "lastMsg": "啊哈哈哈哈。。。。哈了个哈，嗝哈哈哈hh",
+    "msgDate": "2020-01-18",
+    "msgTime": "16:20",
+    "newMsgNum": "3"
+  },
+  {
+    "contact": {
+      "name": "杨鹏",
+      "avatar": "https://randomuser.me/api/portraits/men/4.jpg"
+    },
+    "lastMsg": "我是杨鹏，你是那里人呢？",
+    "msgDate": "2020-01-19",
+    "msgTime": "18:20",
+    "newMsgNum": "4"
+  },
+  {
+    "contact": {
+      "name": "刘宇佳",
+      "avatar": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    "lastMsg": "在？为什么恰烂钱？",
+    "msgDate": "2020-01-20",
+    "msgTime": "20:20",
+    "newMsgNum": "5"
+  }
+]

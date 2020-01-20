@@ -2,14 +2,14 @@
   <div>
     <nav>
       <ul>
-        <li>
-          <img src="../iconfont/personalcenter.svg" id="avatar" alt="中心" />
+        <li class='avatar'>
+          <img class='avatar' src="https://randomuser.me/api/portraits/men/20.jpg" alt="中心" />
         </li>
-        <li id="title">
+        <li class='title'>
           <h4>{{getTitle}}</h4>
         </li>
         <li>
-          <img src="../iconfont/setting.svg" alt="设置"/>
+          <img class='setting' src="../iconfont/setting.svg" alt="设置"/>
         </li>
       </ul>
     </nav>
@@ -19,6 +19,7 @@
 <script>
 export default {
   computed: {
+    // 获取当前所在模块的名称
     getTitle () {
       return this.$store.state.whereHere
     }
@@ -27,7 +28,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   nav {
     background: white;
     position: fixed;
@@ -43,24 +43,25 @@ export default {
         flex: 1;
         line-height: 50px;
 
-        img {
+        .avatar {
           width: 30px;
           height: 30px;
-          margin-bottom: -12px;
+          border-radius: 90%;
+          margin-bottom: -13px;
+        }
+        .setting{
+          width: 30px;
+          height: 30px;
+          margin-bottom: -13px;
         }
       }
     }
   }
-  #title{
+  .title{
     margin-top: 20px;
     line-height: 100%;
     opacity: 0.6;
     color: blue;
     flex: 2;
-  }
-  #avatar{
-    line-height: 100%;
-    margin-bottom: -13px;
-    box-shadow: 0 5px 60px -20px blue;
   }
 </style>
