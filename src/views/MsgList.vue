@@ -1,3 +1,6 @@
+// Author:
+// Time: 2020-01-21 12:31
+// 信息列表视图
 <template>
   <div class='listFrame'>
     <ul class='msgList'>
@@ -31,6 +34,7 @@ export default {
   },
   methods: {},
   mounted () {
+    // 将当前视图的名称发送到ansWhere的mutation中，以动态修改顶部导航栏显示名称
     this.$store.commit('ansWhere', '消息')
   }
 }

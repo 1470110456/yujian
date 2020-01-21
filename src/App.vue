@@ -1,5 +1,6 @@
 <template>
   <div>
+    // 在router中定义的路径下所显示的组件，会被填充到router-view中显示
     <router-view/>
     <navbar/>
     <tabbar/>
@@ -15,6 +16,7 @@ export default {
     return {}
   },
   methods: {},
+  // 子组件的引入
   components: {
     tabbar: tabbar,
     navbar: navbar
