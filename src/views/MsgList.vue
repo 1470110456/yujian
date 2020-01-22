@@ -43,7 +43,6 @@ export default {
 <style lang="scss" scoped>
   .msgList{
     list-style-type: none;
-    margin-top: 54px;
     .msgs{
       display: flex;
       align-items: center;

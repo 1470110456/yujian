@@ -31,8 +31,6 @@ export default {
   }
 
   html {
-    overflow-x: hidden;
-    overflow-y: scroll;
     font-family: noto sans, sans-serif;
     height: 100%;
     background: whitesmoke;
