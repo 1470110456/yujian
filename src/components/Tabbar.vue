@@ -5,13 +5,13 @@
   <div>
     <nav>
       <ul>
-        <router-link active-class="ripple" tag="li" to="/yujian">
+        <router-link active-class="ripple" tag="li" to="/yujian" replace>
           <img src="../iconfont/glob.svg" alt="语见" />
         </router-link>
-        <router-link active-class="ripple" tag="li" to="/msglist">
+        <router-link active-class="ripple" tag="li" to="/msglist" replace>
           <img src="../iconfont/msg.svg" alt="消息"/>
         </router-link>
-        <router-link active-class="ripple" tag="li" to="/things">
+        <router-link active-class="ripple" tag="li" to="/things" replace>
           <img src="../iconfont/things.svg" alt="动态"/>
         </router-link>
       </ul>
