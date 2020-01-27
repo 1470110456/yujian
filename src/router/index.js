@@ -4,6 +4,7 @@ import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
 import Things from '../views/Things'
 import Center from '../views/Center'
+import ChatRoom from '../views/ChatRoom'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,10 @@ const router = new VueRouter({
     {
       path: '/center',
       component: Center
+    },
+    {
+      path: '/ChatRoom',
+      component: ChatRoom
     },
     // 默认初始界面是语见的界面，除了上面三个已经定义路径，其他路径会被重定向到语见的界面
     {

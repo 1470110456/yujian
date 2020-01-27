@@ -4,7 +4,7 @@
 <template>
   <div class='listFrame'>
     <ul class='msgList'>
-      <li class='msgs' v-for='msg in msgList' :key='msg.name'>
+      <li class='msgs' v-for='msg in msgList' :key='msg.name' @click='handleMsgsClick()'>
         <img class='avatar' :src='msg.contact.avatar' alt='avatar'>
         <div class='msg'>
           <div class='msgTitle'>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import msgs from '../assets/msgs'
+import msgs from '../../static/msgs'
 
 export default {
   data () {
@@ -32,7 +32,11 @@ export default {
       msgList: msgs
     }
   },
-  methods: {},
+  methods: {
+    handleMsgsClick () {
+      this.$router.push('/ChatRoom')
+    }
+  },
   mounted () {
     // 将当前视图的名称发送到ansWhere的mutation中，以动态修改顶部导航栏显示名称
     this.$store.commit('ansWhere', '消息')

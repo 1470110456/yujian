@@ -1,6 +1,6 @@
 <template>
   <div>
-    // 在router中定义的路径下所显示的组件，会被填充到router-view中显示
+    <!--在router中定义的路径下所显示的组件，会被填充到router-view中显示-->
     <router-view/>
     <navbar/>
     <tabbar/>
