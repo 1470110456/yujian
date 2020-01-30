@@ -6,8 +6,9 @@ import leanStore from 'leancloud-storage' // LeanCloud 数据存储
 // 导入Mint-ui
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
 
+Vue.use(MintUI)
+//
 Vue.config.productionTip = false
 
 // leanCloud 初始化函数

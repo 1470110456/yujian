@@ -34,7 +34,7 @@ const router = new VueRouter({
     {
       path: '/center',
       component: Center,
-      // 定义center下的子组件
+      //  定义center下的子组件
       children: [
         {
           path: '/center/avatar',

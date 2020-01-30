@@ -4,6 +4,7 @@
 <template>
   <div>
     <nav>
+<!--      导向center路由-->
       <ul>
         <router-link active-class="self-ripple" tag="li" to="/center">
           <img class='avatar' src="https://randomuser.me/api/portraits/men/20.jpg" alt="中心" />

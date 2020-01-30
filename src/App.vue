@@ -8,30 +8,32 @@
 </template>
 
 <script>
-import tabbar from './components/Tabbar'
-import navbar from './components/Navbar'
-// 导入总线实现非父子通信
-import bus from '@/bus'
-export default {
-  data () {
-    return {
-      // 实现yujian主页面的隐藏
-      isShow: true
-    }
-  },
-  methods: {},
-  // 子组件的引入
-  components: {
-    tabbar: tabbar,
-    navbar: navbar
-  },
-  // 为根组件未创建完之前实现数据传输，将主页面显示出来
-  beforeMount () {
-    bus.$on('self', (data) => {
-      this.isShow = data
-    })
-  },
-  mounted () {
+  import tabbar from './components/Tabbar'
+  import navbar from './components/Navbar'
+  // 导入总线实现非父子通信
+  import bus from '@/bus'
+
+  export default {
+    data() {
+      return {
+        // 实现yujian主页面的隐藏
+        isShow: true
+      }
+    },
+    methods: {},
+    // 子组件的引入
+    components: {
+      tabbar: tabbar,
+      navbar: navbar
+    },
+    // 为根组件未创建完之前实现数据传输，将主页面显示出来
+    beforeMount() {
+      bus.$on('self', (data) => {
+        this.isShow = data
+      })
+    },
+    mounted() {
+
   }
 }
 </script>
