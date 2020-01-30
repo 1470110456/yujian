@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import leanStore from 'leancloud-storage' // LeanCloud 数据存储
+// 导入Mint-ui
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 

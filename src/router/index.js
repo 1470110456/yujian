@@ -4,6 +4,10 @@ import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
 import Things from '../views/Things'
 import Center from '../views/Center'
+import Avatar from '../views/Center/Avatar'
+import Mytid from '../views/Center/Mytid'
+import Perdecri from '../views/Center/Perdecri'
+import Perinfo from '../views/Center/Perinfo'
 import ChatRoom from '../views/ChatRoom'
 
 Vue.use(VueRouter)
@@ -29,7 +33,26 @@ const router = new VueRouter({
     },
     {
       path: '/center',
-      component: Center
+      component: Center,
+      // 定义center下的子组件
+      children: [
+        {
+          path: '/center/avatar',
+          component: Avatar
+        },
+        {
+          path: '/center/mytid',
+          component: Mytid
+        },
+        {
+          path: '/center/perdecri',
+          component: Perdecri
+        },
+        {
+          path: '/center/perinfo',
+          component: Perinfo
+        }
+      ]
     },
     {
       path: '/ChatRoom',
