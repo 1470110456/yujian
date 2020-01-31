@@ -28,6 +28,7 @@
 <script>
 import BScroll from 'better-scroll'
 import msgs from '../../static/msgs'
+import store from '../store/index'
 
 export default {
   data () {
@@ -45,7 +46,7 @@ export default {
   },
   mounted () {
     // 将当前视图的名称发送到ansWhere的mutation中，以动态修改顶部导航栏显示名称
-    this.$store.commit('ansWhere', '消息')
+    store.commit('ansWhere', '消息')
     // 动态修改消息列表窗口高度
     this.frameStyle.height = document.documentElement.clientHeight + 'px'
     // 初始化better-scroll

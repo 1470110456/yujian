@@ -6,7 +6,7 @@
     <nav>
       <ul>
         <li class='avatar'>
-          <img class='avatar' src="https://randomuser.me/api/portraits/men/20.jpg" alt="中心" />
+          <img class='avatar' :src='getAvatar' alt="中心" />
         </li>
         <li class='title'>
           <h4>{{getTitle}}</h4>
@@ -20,11 +20,16 @@
 </template>
 
 <script>
+import store from '../store/index'
 export default {
   computed: {
     // 获取当前所在模块的名称
     getTitle () {
       return this.$store.state.whereHere
+    },
+    // 获取头像
+    getAvatar () {
+      return store.state.user.avatar.attributes.url
     }
   }
 }

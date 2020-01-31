@@ -1,10 +1,12 @@
 import Vue from 'vue'
+// import store from '../store'
 import VueRouter from 'vue-router'
 import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
 import Things from '../views/Things'
 import Center from '../views/Center'
 import ChatRoom from '../views/ChatRoom'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,10 @@ const router = new VueRouter({
 
   routes: [
     // 以下是对路由的定义
+    {
+      path: '/login',
+      component: Login
+    },
     {
       path: '/msglist',
       component: MsgList
@@ -35,12 +41,23 @@ const router = new VueRouter({
       path: '/ChatRoom',
       component: ChatRoom
     },
-    // 默认初始界面是语见的界面，除了上面三个已经定义路径，其他路径会被重定向到语见的界面
+    // 默认初始界面是语见的界面，除了上面已经定义路径，其他路径会被重定向到语见的界面
     {
       path: '*',
       redirect: '/yujian'
     }
   ]
 })
+
+// 定义全局路由守卫
+// 判断是否登录，若未登录，会先跳转到登录页面
+// router.beforeEach((to, from, next) => {
+//   if (store.state.user === null) {
+//     console.log('Have not login, please login first.')
+//     next('/login')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
