@@ -4,10 +4,11 @@
 <template>
   <div>
     <nav>
+<!--      导向center路由-->
       <ul>
-        <li class='avatar'>
+        <router-link active-class="self-ripple" tag="li" to="/center">
           <img class='avatar' :src='getAvatar' alt="中心" />
-        </li>
+        </router-link>
         <li class='title'>
           <h4>{{getTitle}}</h4>
         </li>
@@ -71,5 +72,14 @@ export default {
     opacity: 0.6;
     color: blue;
     flex: 2;
+  }
+  //选中个人中心 时的效果
+  .self-ripple{
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 6px 60px -18px blue;
+    border-radius: 10px;
+    transition-duration: 0.3s;
+    color: black;
   }
 </style>
