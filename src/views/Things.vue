@@ -4,7 +4,7 @@
 <template>
   <div class="things1" :style='Styleofmy'>
     <ul class="thinglist">
-      <li class="jiazaizhong">加载中....</li>
+      <li class="jiazaizhong">加载中..</li>
       <li class="things2" v-for="thing0 in thinglist" :key="thing0.name" @click="onclinkhandleThings">
         <img class="hea" :src="thing0.contact.hea" alt="hea">
         <div class="have">
