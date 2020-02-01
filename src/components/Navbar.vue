@@ -6,10 +6,10 @@
     <nav>
       <ul>
         <li class='avatar'>
-          <img class='avatar' :src='getAvatar' alt="中心" />
+          <img class='avatar' :src='avatar' alt="中心" ref='avatar'>
         </li>
         <li class='title'>
-          <h4>{{getTitle}}</h4>
+          <h4>{{whereHere}}</h4>
         </li>
         <li>
           <img class='setting' src="../iconfont/setting.svg" alt="设置"/>
@@ -20,18 +20,16 @@
 </template>
 
 <script>
-import store from '../store/index'
+import { mapState } from 'vuex'
+
 export default {
+  data () {
+    return {}
+  },
   computed: {
-    // 获取当前所在模块的名称
-    getTitle () {
-      return this.$store.state.whereHere
-    },
-    // 获取头像
-    getAvatar () {
-      return store.state.user.avatar.attributes.url
-    }
-  }
+    ...mapState(['avatar', 'whereHere'])
+  },
+  methods: {}
 }
 </script>
 

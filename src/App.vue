@@ -2,13 +2,13 @@
   <div>
     <!--在router中定义的路径下所显示的组件，会被填充到router-view中显示-->
     <router-view/>
-    <navbar  v-if='isLogined'/>
-    <tabbar  v-if='isLogined'/>
+    <navbar  v-show='isShow.navbar'/>
+    <tabbar  v-show='isShow.tabbar'/>
   </div>
 </template>
 
 <script>
-import store from './store/index'
+import { mapState } from 'vuex'
 import tabbar from './components/Tabbar'
 import navbar from './components/Navbar'
 
@@ -17,9 +17,7 @@ export default {
     return {}
   },
   computed: {
-    isLogined () {
-      return store.state.user !== null
-    }
+    ...mapState(['isShow'])
   },
   // 子组件的引入
   components: {

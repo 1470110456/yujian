@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import store from '../store'
+import store from '../store'
 import VueRouter from 'vue-router'
 import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
@@ -7,6 +7,7 @@ import Things from '../views/Things'
 import Center from '../views/Center'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
+const AV = require('leancloud-storage')
 
 Vue.use(VueRouter)
 
@@ -19,45 +20,96 @@ const router = new VueRouter({
     // 以下是对路由的定义
     {
       path: '/login',
-      component: Login
+      component: Login,
+      // 进入登录页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: false,
+          navbar: false
+        })
+        if (AV.User.current() !== null) {
+          next('/yujian')
+        }
+        next()
+      }
     },
     {
       path: '/msglist',
-      component: MsgList
+      component: MsgList,
+      // 进入消息页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: true,
+          navbar: true
+        })
+        next()
+      }
     },
     {
       path: '/things',
-      component: Things
+      component: Things,
+      // 进入动态页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: true,
+          navbar: true
+        })
+        next()
+      }
     },
     {
       path: '/yujian',
-      component: YuJian
+      component: YuJian,
+      // 进入登录页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: true,
+          navbar: true
+        })
+        next()
+      }
     },
     {
       path: '/center',
-      component: Center
+      component: Center,
+      // 进入个人中心页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: true,
+          navbar: true
+        })
+        next()
+      }
     },
     {
       path: '/ChatRoom',
-      component: ChatRoom
+      component: ChatRoom,
+      // 进入登录页面之前，设置各组件显示状态
+      beforeEnter: (to, from, next) => {
+        store.commit('setShow', {
+          tabbar: false,
+          navbar: false
+        })
+        next()
+      }
     },
-    // 默认初始界面是语见的界面，除了上面已经定义路径，其他路径会被重定向到语见的界面
+    // 默认初始界面是登录的界面，除了上面已经定义路径，其他路径会被重定向到登录的界面
     {
       path: '*',
-      redirect: '/yujian'
+      redirect: '/login'
     }
   ]
 })
 
 // 定义全局路由守卫
 // 判断是否登录，若未登录，会先跳转到登录页面
-// router.beforeEach((to, from, next) => {
-//   if (store.state.user === null) {
-//     console.log('Have not login, please login first.')
-//     next('/login')
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (AV.User.current() === undefined && from.path !== '/login') {
+    console.log('Have not login, please login first.')
+    next('/login')
+  } else {
+    next()
+  }
+})
 
 export default router

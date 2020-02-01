@@ -20,7 +20,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -53,7 +55,7 @@ export default {}
   .ripple {
     padding-left: 10px;
     padding-right: 10px;
-    box-shadow: 0 6px 60px -18px blue;
+    box-shadow: 0 36px 54px -15px blue;
     border-radius: 10px;
     transition-duration: 0.3s;
     color: black;

@@ -1,8 +1,14 @@
 <template>
   <div>
-    <input type='text' v-model='username'/>UserName :
+    UserName :
+    <label>
+    <input type='text' v-model='username'/>
+    </label>
     <br/>
-    <input type='password' v-model='password'/>Password :
+    Password :
+    <label>
+    <input type='password' v-model='password'/>
+    </label>
     <br/>
     <button @click='onLoginClick()'>lOGIN</button>
     <button @click='onLogoutClick()'>LOGOUT</button>
@@ -10,10 +16,10 @@
 </template>
 
 <script>
-import { realtime } from '../main'
-import store from '../store/index'
+import store from '../store'
 import router from '../router'
 const AV = require('leancloud-storage')
+const { realtime } = require('../leancloud')
 
 export default {
   data () {
@@ -24,47 +30,48 @@ export default {
   },
   methods: {
     onLoginClick () {
-      if (store.state.user === null) {
-        // 登录数据存储服务器
-        AV.User.logIn(this.username, this.password).then(function (user) {
-          console.log('---------------------------------------')
-          console.log('|' + 'Login success, current user is:' + user.get('name') + '|')
-          console.log('---------------------------------------')
-          // 登录即时通讯服务器
-          realtime.createIMClient(AV.User.current()).then((AVIMClient) => {
-            // 将获得的IMClient全局保存
-            store.commit('setClient', AVIMClient)
-            console.log('-------------------------')
-            console.log('|' + 'Realtime login success.' + '|')
-            console.log('-------------------------')
-          }).catch(console.error)
-          // 将当前登录用户全局保存
-          store.commit('setUser', user)
-        }).catch(console.error)
+      if (AV.User.current() !== null) {
+        console.log('--------------------------------------------------')
+        console.log('|' + 'There is already a user. Current user is :' + AV.User.current().get('name') + '|')
+        console.log('--------------------------------------------------')
         router.push('/yujian')
       } else {
-        console.log('--------------------------------------------------')
-        console.log('|' + 'There is already a user. Current user is :' + store.state.user.name + '|')
-        console.log('--------------------------------------------------')
+        AV.User.logIn(this.username, this.password).then(function (user) {
+          // 打印当前用户的名字
+          console.log('---------------------------------------')
+          console.log('|' + 'Login success, current user is:' + AV.User.current().get('name') + '|')
+          console.log('---------------------------------------')
+          if (store.state.imClient === undefined) {
+            // 登录即时通讯服务器
+            realtime.createIMClient(AV.User.current()).then((AVIMClient) => {
+              // 将获得的IMClient全局保存
+              store.commit('setClient', AVIMClient)
+              console.log('-------------------------')
+              console.log('|' + 'Realtime login success.' + '|')
+              console.log('-------------------------')
+              router.push('/yujian')
+            }).catch(console.error)
+          }
+          // 设置头像图片
+          store.commit('setAvatar', AV.User.current().attributes.avatar.attributes.url)
+        }).catch(console.error)
       }
     },
     onLogoutClick () {
-      if (store.state.user === null) {
+      if (AV.User.current() === null) {
         console.log('-------------------------------------------')
         console.log('|' + 'There is no user, so you can not logout !' + '|')
         console.log('-------------------------------------------')
       } else {
         // 登出数据存储服务器
         AV.User.logOut().then((user) => {
-          // 将全局保存的用户设置为空
-          store.commit('setUser', null)
           console.log('-----------------')
           console.log('|' + 'Logout success.' + '|')
           console.log('-----------------')
           // 登出即时通讯服务器
           store.state.imClient.close().then(function () {
             // 将全局保存的IMClient设置为空
-            store.commit('setClient', null)
+            store.commit('setClient', undefined)
             console.log('-----------------------')
             console.log('|' + 'Realtime out success.' + '|')
             console.log('-----------------------')
