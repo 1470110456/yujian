@@ -2,43 +2,32 @@
   <div>
     <!--在router中定义的路径下所显示的组件，会被填充到router-view中显示-->
     <router-view/>
-    <navbar  v-if='isLogined' v-show="isShow"/>
-    <tabbar  v-if='isLogined' v-show="isShow"/>
+    <navbar v-if='isLogined' v-show="$store.state.isBarShow"/>
+    <tabbar v-if='isLogined' v-show="$store.state.isBarShow"/>
   </div>
 </template>
 
 <script>
-import store from './store/index'
-import tabbar from './components/Tabbar'
-import navbar from './components/Navbar'
-// 导入总线实现非父子通信
-import bus from '@/bus'
+  import store from './store/index'
+  import tabbar from './components/Tabbar'
+  import navbar from './components/Navbar'
 
-export default {
-  data () {
-    return {
-      // 实现yujian主页面的隐藏
-      isShow: true
+  export default {
+    data() {
+      return {}
+    },
+    methods: {},
+    computed: {
+      isLogined() {
+        return store.state.user !== null
+      }
+    },
+    // 子组件的引入
+    components: {
+      tabbar: tabbar,
+      navbar: navbar
     }
-  },
-  methods: {},
-  computed: {
-    isLogined () {
-      return store.state.user !== null
-    }
-  },
-  // 子组件的引入
-  components: {
-    tabbar: tabbar,
-    navbar: navbar
-  },
-  // 为根组件未创建完之前实现数据传输，将主页面显示出来
-  beforeMount () {
-    bus.$on('self', (data) => {
-      this.isShow = data
-    })
   }
-}
 </script>
 
 <style lang="scss">

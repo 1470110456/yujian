@@ -5,17 +5,15 @@
   </div>
 </template>
 <script>
-// 导入bus实现非父子通信
-import bus from '@/bus'
 
 export default {
-  // 实现在mytid组件创建完成之前就让center的主页面消失
   beforeMount () {
-    bus.$emit('center-child', false)
+    // 在加载avatar组件时 实现center页面的隐藏
+    this.$store.commit('HideCenterbar', false)
   },
-  // 实现退出mytid页面之后 就让center的主页面出现
   beforeDestroy () {
-    bus.$emit('center-child', true)
+    // 在退出avatar组件时 实现center页面的显现
+    this.$store.commit('ShowCenterbar', true)
   }
 }
 

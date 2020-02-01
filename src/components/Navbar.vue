@@ -6,11 +6,11 @@
     <nav>
 <!--      导向center路由-->
       <ul>
-        <router-link active-class="self-ripple" tag="li" to="/center">
-          <img class='avatar' :src='getAvatar' alt="中心" />
+        <router-link tag="li" to="/center">
+          <img :src='getAvatar' alt="中心" class='avatar'/>
         </router-link>
         <li class='title'>
-          <h4>{{getTitle}}</h4>
+          <h3>{{getTitle}}</h3>
         </li>
         <li>
           <img class='setting' src="../iconfont/setting.svg" alt="设置"/>
@@ -21,19 +21,20 @@
 </template>
 
 <script>
-import store from '../store/index'
-export default {
-  computed: {
-    // 获取当前所在模块的名称
-    getTitle () {
-      return this.$store.state.whereHere
-    },
-    // 获取头像
-    getAvatar () {
-      return store.state.user.avatar.attributes.url
+  import store from '../store/index'
+
+  export default {
+    computed: {
+      // 获取当前所在模块的名称
+      getTitle() {
+        return this.$store.state.whereHere
+      },
+      // 获取头像
+      getAvatar() {
+        return store.state.user.avatar.attributes.url
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -49,14 +50,18 @@ export default {
       display: flex;
 
       li {
+        position: relative;
         flex: 1;
         line-height: 50px;
 
         .avatar {
-          width: 30px;
-          height: 30px;
-          border-radius: 90%;
-          margin-bottom: -13px;
+          position: absolute;
+          left: 50%;
+          top: 10px;
+          width: 35px;
+          height: auto;
+          border-radius: 50%;
+          /*<!--transform: translate(20%, -45%);-->*/
         }
         .setting{
           width: 30px;
