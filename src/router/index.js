@@ -14,6 +14,8 @@ import Mytid from '../views/Center/Mytid'
 import Perdecri from '../views/Center/Perdecri'
 // 导入Center组件中的avatar个人信息组件
 import Perinfo from '../views/Center/Perinfo'
+// 导入Center组件中的name 昵称组件
+import Name from '../views/Center/Name'
 // 导入avatar组件中的头像库的组件
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
@@ -141,6 +143,7 @@ const router = new VueRouter({
         }
       ]
     },
+    // 定义center的组件
     {
       path: '/center',
       component: Center,
@@ -168,6 +171,10 @@ const router = new VueRouter({
         {
           path: '/center/perinfo',
           component: Perinfo
+        },
+        {
+          path: '/center/name',
+          component: Name
         }
       ]
     },

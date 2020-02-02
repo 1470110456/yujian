@@ -54,11 +54,11 @@
     margin: 0;
     padding: 0;
   }
-  .center{
+  .center {
     display: flex;
     font-style: normal;
     font-weight: 700;
-    color: blue;
+    color: #3a3ae3;
     display: block;
     background-color: white;
     height: 55px;

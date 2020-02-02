@@ -9,6 +9,14 @@
           <em class="pic">></em>
         </router-link>
       </ul>
+      <!--      昵称-->
+      <ul class="father">
+        <router-link tag="li" to="/center/name">
+          <em class="word">昵称</em>
+          <em id="name">{{getName}}</em>
+          <em class="pic">></em>
+        </router-link>
+      </ul>
       <!--      路由导向个人信息-->
       <ul class="father">
         <router-link tag="li" to="/center/perinfo">
@@ -16,6 +24,7 @@
           <em class="pic">></em>
         </router-link>
       </ul>
+
       <!--      路由导向个人描述-->
       <ul class="father">
         <router-link tag="li" to="/center/perdecri">
@@ -35,10 +44,15 @@
 </template>
 
 <script>
-
+  const AV = require('leancloud-storage')
 export default {
-  data () {
+  data() {
     return {}
+  },
+  computed: {
+    getName() {
+      return AV.User.current().attributes.name
+    }
   }
 }
 </script>
@@ -74,6 +88,11 @@ export default {
     position: absolute;
     font-style: normal;
     margin: 0 5px;
+    font-size: 18px;
+  }
+
+  #name {
+    right: 17px;
   }
 
   .word {

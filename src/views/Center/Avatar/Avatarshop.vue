@@ -43,6 +43,24 @@
         AV.User.current().save()
         // 释放原来的头像文件
         fileDestory.destroy()
+        // 10s后跳转页面
+        var timejump = 10
+        this.isShow = true
+        if (!this.timer) {
+          this.count = timejump
+          this.show = false
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= timejump) {
+              this.count--
+            } else {
+              this.show = true
+              clearInterval(this.timer)
+              this.timer = null
+              // 跳转的页面写在此处
+              this.$router.push({path: '/center/avatar'})
+            }
+          }, 100)
+        }
         console.log('头像设置成功')
       }
     }
