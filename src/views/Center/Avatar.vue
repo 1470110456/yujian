@@ -3,7 +3,7 @@
   <div>
     <ul>
       <li class="head" v-show="$store.state.isAvatarShow">
-        <img alt="头像商场" class="shop" src="../../iconfont/headShop.jpg">
+        <img alt="头像商场" class="shop" src="../../iconfont/Shop.jpg">
         <i class="avatarStore"><h3>头像商场</h3></i>
       </li>
     </ul>

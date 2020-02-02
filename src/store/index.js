@@ -17,7 +17,7 @@ export default new Vuex.Store({
     // center页面列表的隐藏的显现的状态
     isCenterbarShow: true,
     // 获取头像路径
-    url: '123',
+    url: '',
     // 头像库的显现
     isAvatarShow: true
   },

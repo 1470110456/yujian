@@ -14,7 +14,7 @@ import Mytid from '../views/Center/Mytid'
 import Perdecri from '../views/Center/Perdecri'
 // 导入Center组件中的avatar个人信息组件
 import Perinfo from '../views/Center/Perinfo'
-// 导入avatar组件中的头像库组件
+// 导入avatar组件中的头像库的组件
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
