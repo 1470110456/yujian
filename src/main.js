@@ -2,15 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import {appId, appKey, serverURLs} from './leancloud' // 富媒体消息插件
+import { appId, appKey, serverURLs } from './leancloud' // 富媒体消息插件
 // 导入Mint-ui
-// import MintUI from 'mint-ui'
-// import 'mint-ui/lib/style.css' // LeanCloud 配置信息
-const {Realtime, Event} = require('leancloud-realtime') // LeanCloud 数据存储
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css' // LeanCloud 配置信息
+const { Realtime, Event } = require('leancloud-realtime') // LeanCloud 数据存储
 const AV = require('leancloud-storage') // LeanCloud 即时通讯
 const TypedMessagesPlugin = require('leancloud-realtime-plugin-typed-messages')
 
-// Vue.use(MintUI)
+Vue.use(MintUI)
 
 // 生产环境提示，在开发环境下false就好
 Vue.config.productionTip = false
