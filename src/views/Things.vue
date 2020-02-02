@@ -3,13 +3,13 @@
 // 动态视图
 <template>
   <div class="things1" :style='Styleofmy'>
-    <ul class="thinglist">
+    <ul class="things">
       <li class="jiazaizhong">加载中..</li>
-      <li class="things2" v-for="thing0 in thinglist" :key="thing0.name" @click="onclinkhandleThings">
-        <img class="hea" :src="thing0.contact.hea" alt="hea">
+      <li class="things2" v-for="thing0 in things" :key="thing0.name" @click="onclinkhandleThings">
+        <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
         <div class="have">
           <div class="title1">
-            <h3 class="name">{{thing0.contact.name}}</h3>
+            <h1 class="name">{{thing0.contact.name}}</h1>
             <time class="thingstime">{{thing0.puttime}}</time>
           </div>
           <div class="thingstate">
@@ -29,8 +29,8 @@ import BScroll from 'better-scroll'
 export default {
   data () {
     return {
-      thinglist: things,
-      styleofmy: {
+      things: things,
+      Styleofmy: {
         height: '0px'
       }
     }
@@ -43,7 +43,6 @@ export default {
   mounted () {
     // 将当前视图的名称发送到ansWhere的mutation中，以动态修改顶部导航栏显示名称
     store.commit('ansWhere', '动态')
-    // 动态修改动态列表窗口高度
     this.styleofmy.height = document.documentElement.clientHeight + 'px'
     this.$nextTick(() => {
       this.scroll = new BScroll('.things1', {
@@ -58,7 +57,7 @@ export default {
 <style lang="scss" scoped>
   .things1{
     overflow: hidden;
-    .thinglist{
+    .things{
       list-style-type: none;
       .jiazaizhong{
         margin-bottom: 32px;
@@ -71,7 +70,7 @@ export default {
         border-radius: 12px;
         box-shadow: 0 6px 30px -30px;
         margin: 12px;
-        .hea{
+        .avatar{
           width: 60px;
           height: 60px;
           border-radius: 90%;
