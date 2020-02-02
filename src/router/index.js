@@ -18,8 +18,23 @@ import Perinfo from '../views/Center/Perinfo'
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
+// 引入两个二级子组件
 import TheBelt from '../views/YuJian/TheBelt'
 import TheRoad from '../views/YuJian/TheRoad'
+// 引入六个三级子组件（一带）
+import Germany from '../views/YuJian/TheBeltCountry/Germany'
+import Iran from '../views/YuJian/TheBeltCountry/Iran'
+import Italy from '../views/YuJian/TheBeltCountry/Italy'
+import Netherlands from '../views/YuJian/TheBeltCountry/Netherlands'
+import Russia from '../views/YuJian/TheBeltCountry/Russia'
+import Turkey from '../views/YuJian/TheBeltCountry/Turkey'
+// 引入六个三级子组件（一路）
+import Greece from '../views/YuJian/TheRoadCountry/Greece'
+import India from '../views/YuJian/TheRoadCountry/India'
+import Indonesia from '../views/YuJian/TheRoadCountry/Indonesia'
+import Kenya from '../views/YuJian/TheRoadCountry/Kenya'
+import Malaysia from '../views/YuJian/TheRoadCountry/Malaysia'
+import Vietnam from '../views/YuJian/TheRoadCountry/Vietnam'
 
 Vue.use(VueRouter)
 
@@ -49,11 +64,75 @@ const router = new VueRouter({
       children: [
         {
           path: '/YuJian/TheBelt',
-          component: TheBelt
+          component: TheBelt,
+          // 定义TheBelt下的子组件
+          children: [
+            {
+              path: '/YuJian/TheBeltCountry/Germany',
+              component: Germany
+            },
+            {
+              path: '/YuJian/TheBeltCountry/Iran',
+              component: Iran
+            },
+            {
+              path: '/YuJian/TheBeltCountry/Italy',
+              component: Italy
+            },
+            {
+              path: '/YuJian/TheBeltCountry/Netherlands',
+              component: Netherlands
+            },
+            {
+              path: '/YuJian/TheBeltCountry/Russia',
+              component: Russia
+            },
+            {
+              path: '/YuJian/TheBeltCountry/Turkey',
+              component: Turkey
+            }
+            // 三级路由重定向
+            // {
+            // path: '/',
+            // redirect: '/YuJian/TheBeltCountry/Iran'
+            // }
+          ]
         },
         {
           path: '/YuJian/TheRoad',
-          component: TheRoad
+          component: TheRoad,
+          // 定义TheRoad下的子组件
+          children: [
+            {
+              path: '/YuJian/TheRoadCountry/Greece',
+              component: Greece
+            },
+            {
+              path: '/YuJian/TheRoadCountry/India',
+              component: India
+            },
+            {
+              path: '/YuJian/TheRoadCountry/Indonesia',
+              component: Indonesia
+            },
+            {
+              path: '/YuJian/TheRoadCountry/Kenya',
+              component: Kenya
+            },
+            {
+              path: '/YuJian/TheRoadCountry/Malaysia',
+              component: Malaysia
+            },
+            {
+              path: 'Yujian/TheRoadCountry/Vietnam',
+              component: Vietnam
+            }
+            // 三级路由重定向
+            // {
+            // path: '/',
+            // redirect: '/Yujian/TheRoadCountry/Greece'
+            // }
+          ]
         },
         //   二级路由重定向
         {
