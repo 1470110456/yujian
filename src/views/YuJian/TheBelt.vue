@@ -44,8 +44,8 @@ export default {
     height: 70%;
     background-color: cornflowerblue;
     border-radius: 12px;
+    // 使得图片自适应屏幕
     background-size: cover;
-
     .TBname {
       margin-top: 20px;
       width: 100%;

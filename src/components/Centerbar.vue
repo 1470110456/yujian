@@ -44,13 +44,13 @@
 </template>
 
 <script>
-  const AV = require('leancloud-storage')
+const AV = require('leancloud-storage')
 export default {
-  data() {
+  data () {
     return {}
   },
   computed: {
-    getName() {
+    getName () {
       return AV.User.current().attributes.name
     }
   }
