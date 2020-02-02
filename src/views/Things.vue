@@ -7,12 +7,13 @@
       <li class="jiazaizhong">加载中..</li>
       <li class="things2" v-for="thing0 in things" :key="thing0.name" @click="onclinkhandleThings">
         <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
+        <h3 class="name">{{thing0.contact.name}}</h3>
         <div class="have">
           <div class="title1">
-            <h1 class="name">{{thing0.contact.name}}</h1>
             <time class="thingstime">{{thing0.puttime}}</time>
           </div>
           <div class="thingstate">
+            <img class="picture" :src="thing0.contact.picture" alt="picture">
             <p class="title2">{{thing0.thingtitle}}</p>
           </div>
         </div>
@@ -43,7 +44,7 @@ export default {
   mounted () {
     // 将当前视图的名称发送到ansWhere的mutation中，以动态修改顶部导航栏显示名称
     store.commit('ansWhere', '动态')
-    this.styleofmy.height = document.documentElement.clientHeight + 'px'
+    this.Styleofmy.height = document.documentElement.clientHeight + 'px'
     this.$nextTick(() => {
       this.scroll = new BScroll('.things1', {
         fade: true,
@@ -69,12 +70,17 @@ export default {
         background: white;
         border-radius: 12px;
         box-shadow: 0 6px 30px -30px;
-        margin: 12px;
+        margin: 20px;
+        background-color: azure;
         .avatar{
           width: 60px;
           height: 60px;
           border-radius: 90%;
-          margin: 6px 18px 6px 18px;
+          margin: 0px 0px 0px 0px;
+        }
+        .name{
+          flex: 8;
+          opacity: 10;
         }
         .have{
           width: 100%;
@@ -83,13 +89,10 @@ export default {
             width: 100%;
             display: flex;
             text-align: left;
-            .name{
-              flex: 8;
-              opacity: 0.7;
             }
             .thingstime{
               opacity: 0.6;
-              text-align: right;
+              margin: 1px 2px 3px 4px;
             }
           }
           .thingstate{
@@ -103,6 +106,10 @@ export default {
               overflow: hidden;
               text-overflow: ellipsis;
             }
+            .picture{
+              height: 200px;
+              width: 200px;
+              margin: 0px 200px 0px 200px;
           }
         }
       }
