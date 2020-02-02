@@ -6,6 +6,7 @@
       <router-link active-class="YJripple" tag="li" to="/YuJian/TheBelt">
         <p id="TB">The Belt</p>
       </router-link>
+      <!--路由导向一路-->
       <router-link active-class="YJripple" tag="li" to="/YuJian/TheRoad">
         <p id="TR">The Road</p>
       </router-link>

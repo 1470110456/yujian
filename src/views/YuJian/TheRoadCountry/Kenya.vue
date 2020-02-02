@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// kenya
 export default {
   name: 'Kenya'
 }

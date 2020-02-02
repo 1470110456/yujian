@@ -11,6 +11,7 @@
 
 <script>
 import store from '../store/index'
+// 导入语见导航栏
 import YuJianbar from '../components/YuJianbar'
 
 export default {

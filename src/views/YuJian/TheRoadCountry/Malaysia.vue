@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// malaysia
 export default {
   name: 'Malaysia'
 }

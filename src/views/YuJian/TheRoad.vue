@@ -22,6 +22,7 @@ import swiper from '@/views/YuJian/Swiper'
 import TRs from '../../../static/TRs'
 
 export default {
+  // 返回国家数据
   data () {
     return {
       TRlist: TRs

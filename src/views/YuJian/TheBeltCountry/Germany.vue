@@ -3,6 +3,9 @@
 </template>
 
 <script>
+/*
+   germany
+  */
 export default {
   name: 'Germany'
 }

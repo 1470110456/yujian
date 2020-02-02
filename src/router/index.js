@@ -38,7 +38,7 @@ const router = new VueRouter({
     {
       path: '/yujian',
       component: YuJian,
-      // 定义YuJian下的子组件
+      // 定义YuJian下的子组件(一带一路)
       children: [
         {
           path: '/YuJian/TheBelt',
