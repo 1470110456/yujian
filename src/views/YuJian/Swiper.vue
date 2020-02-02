@@ -20,7 +20,7 @@ export default {
       // 播放效果
       effect: 'coverflow',
       coverflowEffect: {
-        slideShadows: false // 取消边界阴影
+        slideShadows: false
       },
       // 循环播放
       loop: true,
