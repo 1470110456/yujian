@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper>
+    <swiper :key="TRlist.length">
       <div :key="tr.name" class="swiper-slide" v-for="tr in TRlist">
         <!--国家信息卡片-->
         <div :style=" {backgroundImage:'url('+tr.photo+')'}" class="TRCard">
@@ -41,9 +41,10 @@ export default {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    height: 400px;
+    height: 70%;
     background-color: cornflowerblue;
     border-radius: 12px;
+    background-size: cover;
   }
 
   .TRname {

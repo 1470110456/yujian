@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper>
+    <swiper :key="TBlist.length">
       <div :key="tb.name" class="swiper-slide" v-for="tb in TBlist">
         <!--国家信息卡片-->
         <div :style=" {backgroundImage:'url('+tb.photo+')'}" class="TBCard">
@@ -41,9 +41,10 @@ export default {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    height: 400px;
+    height: 70%;
     background-color: cornflowerblue;
     border-radius: 12px;
+    background-size: cover;
 
     .TBname {
       margin-top: 20px;
