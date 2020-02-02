@@ -7,14 +7,15 @@
       <li class="jiazaizhong">加载中..</li>
       <li class="things2" v-for="thing0 in things" :key="thing0.name" @click="onclinkhandleThings">
         <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
-        <h3 class="name">{{thing0.contact.name}}</h3>
+        <h5 class="name">{{thing0.contact.name}}</h5>
         <div class="have">
           <div class="title1">
-            <time class="thingstime">{{thing0.puttime}}</time>
           </div>
           <div class="thingstate">
-            <img class="picture" :src="thing0.contact.picture" alt="picture">
             <p class="title2">{{thing0.thingtitle}}</p>
+          </div>
+          <div>
+            <img class="picture" :src="thing0.contact.picture" alt="picture">
           </div>
         </div>
       </li>
@@ -34,11 +35,6 @@ export default {
       Styleofmy: {
         height: '0px'
       }
-    }
-  },
-  methods: {
-    onclinkhandleThings () {
-      this.$router.push('/thingsroom')
     }
   },
   mounted () {
@@ -66,22 +62,17 @@ export default {
       }
       .things2{
         display: flex;
-        align-items: center;
-        background: white;
         border-radius: 12px;
         box-shadow: 0 6px 30px -30px;
         margin: 20px;
-        background-color: azure;
-        .avatar{
-          width: 60px;
-          height: 60px;
-          border-radius: 90%;
-          margin: 0px 0px 0px 0px;
+        background-color: antiquewhite;
         }
-        .name{
-          flex: 8;
-          opacity: 10;
-        }
+      .avatar{
+        background-color: black;
+        width: 60px;
+        height: 60px;
+        border-radius: 90%;
+        margin: 5px 5px 5px 5px;
         .have{
           width: 100%;
           margin: 0 18px 0 0;
@@ -90,28 +81,22 @@ export default {
             display: flex;
             text-align: left;
             }
-            .thingstime{
-              opacity: 0.6;
-              margin: 1px 2px 3px 4px;
-            }
           }
-          .thingstate{
-            display: flex;
-            .title2{
-              flex: 8;
-              opacity: 0.6;
-              width: 0;
-              text-align: left;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-            .picture{
-              height: 200px;
-              width: 200px;
-              margin: 0px 200px 0px 200px;
-          }
+      }
+      .name{
+        margin: 5px 2px 3px 4px;
+        opacity: 1;
+      }
+      .thingstate{
+        display: flex;
+        .title2{
+          margin: 60px 0px 5px 0px;
         }
+      }
+      .picture{
+        height: auto;
+        width: auto;
+        margin: 0px 1px 1px 1px;
       }
     }
   }
