@@ -11,7 +11,6 @@ const AV = require('leancloud-storage') // LeanCloud 即时通讯
 const TypedMessagesPlugin = require('leancloud-realtime-plugin-typed-messages')
 
 Vue.use(MintUI)
-
 // 生产环境提示，在开发环境下false就好
 Vue.config.productionTip = false
 

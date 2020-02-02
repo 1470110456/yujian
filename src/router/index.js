@@ -11,6 +11,8 @@ import Perdecri from '../views/Center/Perdecri'
 import Perinfo from '../views/Center/Perinfo'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
+import TheBelt from '../views/YuJian/TheBelt'
+import TheRoad from '../views/YuJian/TheRoad'
 
 Vue.use(VueRouter)
 
@@ -35,7 +37,23 @@ const router = new VueRouter({
     },
     {
       path: '/yujian',
-      component: YuJian
+      component: YuJian,
+      // 定义YuJian下的子组件(一带一路)
+      children: [
+        {
+          path: '/YuJian/TheBelt',
+          component: TheBelt
+        },
+        {
+          path: '/YuJian/TheRoad',
+          component: TheRoad
+        },
+        //   二级路由重定向
+        {
+          path: '/',
+          redirect: '/YuJian/TheBelt'
+        }
+      ]
     },
     {
       path: '/center',
