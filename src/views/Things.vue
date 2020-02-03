@@ -6,18 +6,17 @@
     <ul class="things">
       <li class="jiazaizhong">加载中..</li>
       <li class="things2" v-for="thing0 in things" :key="thing0.name" @click="onclinkhandleThings">
-        <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
-        <h5 class="name">{{thing0.contact.name}}</h5>
         <div class="have">
-          <div class="title1">
-          </div>
           <div class="thingstate">
-            <p class="title2">{{thing0.thingtitle}}</p>
+            <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
+            <h5 class="name">{{thing0.contact.name}}{{thing0.puttime}}</h5>
+            <button class="inside">详情</button>
           </div>
-          <div>
+          <div class="neirong">
+            <p class="title2">{{thing0.thingtitle}}</p>
             <img class="picture" :src="thing0.contact.picture" alt="picture">
           </div>
-        </div>
+          </div>
       </li>
     </ul>
   </div>
@@ -35,6 +34,11 @@ export default {
       Styleofmy: {
         height: '0px'
       }
+    }
+  },
+  methods: {
+    onclinkhandleThings () {
+      this.$router.push('/thingsroom')
     }
   },
   mounted () {
@@ -65,38 +69,43 @@ export default {
         border-radius: 12px;
         box-shadow: 0 6px 30px -30px;
         margin: 20px;
-        background-color: antiquewhite;
-        }
-      .avatar{
-        background-color: black;
-        width: 60px;
-        height: 60px;
-        border-radius: 90%;
-        margin: 5px 5px 5px 5px;
         .have{
           width: 100%;
-          margin: 0 18px 0 0;
-          .title1{
-            width: 100%;
+          margin: 0px 0 0 0;
+          .thingstate {
             display: flex;
-            text-align: left;
+            margin: 0 0 0 0;
+            .avatar{
+              background-color: black;
+              width: 60px;
+              height: 60px;
+              border-radius: 90%;
+              margin: 0px 0px 0px 0px;
+            }
+            .name{
+              margin: 15px 0px 0px 0px;
+              opacity: 1;
+              width: 50px;
+            }
+            .inside{
+              height: 25px;
+              width: 50px;
+              margin: 15px 0px 0px 220px;
             }
           }
-      }
-      .name{
-        margin: 5px 2px 3px 4px;
-        opacity: 1;
-      }
-      .thingstate{
-        display: flex;
-        .title2{
-          margin: 60px 0px 5px 0px;
-        }
-      }
-      .picture{
-        height: auto;
-        width: auto;
-        margin: 0px 1px 1px 1px;
+          .neirong{
+            margin: 0 200px 0 0;
+            .picture{
+              height: auto;
+              width: auto;
+              margin: 10px 1px 5px 1px;
+            }
+            .title2{
+              width: 200px;
+              margin: 0px 0px 0px 0px;
+            }
+          }
+          }
       }
     }
   }
