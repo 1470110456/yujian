@@ -48,12 +48,13 @@ export default {
         console.log('-------------------------------------------')
         console.log('|' + 'There is no user, so you can not logout !' + '|')
         console.log('-------------------------------------------')
-      } else {
+      } else if (store.state.imClient !== undefined) {
         // 登出数据存储服务器
         AV.User.logOut().then(() => {
           console.log('-----------------')
           console.log('|' + 'Logout success.' + '|')
           console.log('-----------------')
+          store.commit('setConversations', [])
           // 登出即时通讯服务器
           store.state.imClient.close().then(() => {
             // 将全局保存的IMClient设置为空
@@ -62,6 +63,13 @@ export default {
             console.log('|' + 'Realtime out success.' + '|')
             console.log('-----------------------')
           }).catch(console.error)
+        }).catch(console.error)
+      } else {
+        AV.User.logOut().then(() => {
+          console.log('-----------------')
+          console.log('|' + 'Logout success.' + '|')
+          console.log('-----------------')
+          store.commit('setConversations', [])
         }).catch(console.error)
       }
     }

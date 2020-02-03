@@ -67,24 +67,25 @@ export default {
       }
       .things2{
         display: flex;
+        background-color: white;
         border-radius: 12px;
         box-shadow: 0 6px 30px -30px;
         margin: 20px;
         .have{
           width: 100%;
-          margin: 0px 0 0 0;
+          margin: 0;
           .thingstate {
             display: flex;
-            margin: 0 0 0 0;
+            margin: 0;
             .avatar{
               background-color: black;
               width: 60px;
               height: 60px;
               border-radius: 90%;
-              margin: 0px 0px 0px 0px;
+              margin: 0;
             }
             .name{
-              margin: 15px 0px 0px 0px;
+              margin: 15px 0;
               opacity: 1;
               width: 50px;
             }
@@ -103,7 +104,7 @@ export default {
             }
             .title2{
               width: 200px;
-              margin: 0px 0px 0px 0px;
+              margin: 0;
             }
           }
           }

@@ -1,17 +1,16 @@
 import Vue from 'vue'
-import store from '../store'
 import VueRouter from 'vue-router'
+import store from '../store'
 import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
 import Things from '../views/Things'
 import Center from '../views/Center'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
-// import AV from 'leancloud-storage'
+import ThingsRoom from '../views/ThingsRoom'
 
 Vue.use(VueRouter)
 
-console.log('router')
 const router = new VueRouter({
   // 路由模式：hash，另外一种是history模式，具体有何区别请查阅文档
   mode: 'hash',
@@ -53,7 +52,14 @@ const router = new VueRouter({
           navbar: true
         })
         next()
-      }
+      },
+      // 动态详情页
+      children: [
+        {
+          path: '/things/thingsroom',
+          component: ThingsRoom
+        }
+      ]
     },
     {
       path: '/yujian',
@@ -102,11 +108,11 @@ const router = new VueRouter({
 // 定义全局路由守卫
 // 判断是否登录，若未登录，会先跳转到登录页面
 // router.beforeEach((to, from, next) => {
-//   if (to.path === '/login') {
-//     next()
-//   } else if (AV.User.current() === null) {
-//     console.log('There is no user, so you are loading to login now......')
+//   if (store.state.user === null) {
+//     console.log('Have not login, please login first.')
 //     next('/login')
+//   } else {
+//     next()
 //   }
 // })
 

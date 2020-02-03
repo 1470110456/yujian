@@ -12,6 +12,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // 全局状态存储的地方
   state: {
+    // test
+    arr: [{
+      id: 1,
+      a: 'a1'
+    },
+    {
+      id: 2,
+      a: 'a2'
+    }],
     // 顶部导航栏显示的名称的状态
     whereHere: String,
     // 用户头像
@@ -22,6 +31,7 @@ export default new Vuex.Store({
     // 使用时不必要将所有组件的状态都传到mutation中，只要将要管理的组件的状态传过去即可
     // 例：我想在某个地方显示navbar，那我只需要写 store.commit('setShow', { navbar: true }) 即可
     isShow: {
+      // 以下是受管理的各组件的默认显示状态
       tabbar: false,
       navbar: false
     },
@@ -44,6 +54,13 @@ export default new Vuex.Store({
   },
   // 状态修改的唯一地方
   mutations: {
+    // test
+    setArr (state, b) {
+      const c = state.arr[1]
+      c.a = b.b
+      state.arr.splice(b.index, 1)
+      state.arr.unshift(c)
+    },
     // 设置顶部导航栏显示的名称
     ansWhere (state, where) {
       state.whereHere = where
@@ -62,7 +79,11 @@ export default new Vuex.Store({
     },
     // 设置对话列表
     setConversations (state, conversations) {
-      state.conversations.push(conversations)
+      if (conversations === []) {
+        state.conversations = []
+      } else {
+        state.conversations.push(conversations)
+      }
     },
     // 更新对话列表
     setNewConver (state, newConver) {
@@ -150,7 +171,11 @@ export default new Vuex.Store({
       // 倒序遍历以截取信息
       for (let c = conversations.length - 1; c >= 0; c--) {
         // 设置查询条件
-        query.equalTo('objectId', conversations[c].members[1])
+        const index = conversations[c].members.findIndex((m, i, members) => {
+          return m === AV.User.current().id
+        })
+        conversations[c].members.splice(index, 1)
+        query.equalTo('objectId', conversations[c].members[0])
           // 开始查询
           .find()
           .then(function (user) {
