@@ -10,7 +10,7 @@
           <div class="thingstate">
             <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
             <h5 class="name">{{thing0.contact.name}}{{thing0.puttime}}</h5>
-            <button class="inside">详情</button>
+            <button class="inside" href="/thingsroom">详情</button>
           </div>
           <div class="neirong">
             <p class="title2">{{thing0.thingtitle}}</p>
@@ -19,6 +19,7 @@
           </div>
       </li>
     </ul>
+    <router-view/>
   </div>
 </template>
 
