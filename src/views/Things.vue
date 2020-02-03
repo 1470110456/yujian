@@ -5,12 +5,12 @@
   <div class="things1" :style='Styleofmy'>
     <ul class="things">
       <li class="jiazaizhong">加载中..</li>
-      <li class="things2" v-for="thing0 in things" :key="thing0.name" @click="onclinkhandleThings">
+      <li class="things2" v-for="thing0 in things" :key="thing0.name">
         <div class="have">
           <div class="thingstate">
             <img class="avatar" :src="thing0.contact.avatar" alt="avatar">
             <h5 class="name">{{thing0.contact.name}}{{thing0.puttime}}</h5>
-            <button class="inside" href="/thingsroom">详情</button>
+            <button class="inside"  @click="onclinkhandleThings">详情</button>
           </div>
           <div class="neirong">
             <p class="title2">{{thing0.thingtitle}}</p>
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     onclinkhandleThings () {
-      this.$router.push('/thingsroom')
+      this.$router.push('/things/thingsroom')
     }
   },
   mounted () {
