@@ -1,14 +1,14 @@
-<!--<template>-->
-<!--  <div></div>-->
-<!--</template>-->
+<template>
+  <div>italy</div>
+</template>
 
-<!--<script>-->
-<!--// italy-->
-<!--export default {-->
-<!--  name: 'Italy'-->
-<!--}-->
-<!--</script>-->
+<script>
+// italy
+export default {
+  name: 'Italy'
+}
+</script>
 
-<!--<style scoped>-->
+<style scoped>
 
-<!--</style>-->
+</style>

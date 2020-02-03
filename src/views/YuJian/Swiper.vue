@@ -45,6 +45,5 @@ export default {
 
 <style lang="scss" scoped>
   .swiper-wrapper {
-    margin-top: 20px;
   }
 </style>
