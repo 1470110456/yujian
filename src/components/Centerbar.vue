@@ -17,6 +17,14 @@
           <em class="pic">></em>
         </router-link>
       </ul>
+      <!--      昵称-->
+      <ul class="father">
+        <router-link tag="li" to="/center/sex">
+          <em class="word">性别</em>
+          <em id="sex">{{getSex}}</em>
+          <em class="pic">></em>
+        </router-link>
+      </ul>
       <!--      路由导向个人信息-->
       <ul class="father">
         <router-link tag="li" to="/center/perinfo">
@@ -52,6 +60,9 @@ export default {
   computed: {
     getName () {
       return AV.User.current().attributes.name
+    },
+    getSex() {
+      return AV.User.current().attributes.sex
     }
   }
 }
@@ -93,6 +104,10 @@ export default {
 
   #name {
     right: 17px;
+  }
+
+  #sex {
+    right: 20px;
   }
 
   .word {
