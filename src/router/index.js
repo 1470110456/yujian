@@ -7,7 +7,7 @@ import Things from '../views/Things'
 import Center from '../views/Center'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
-const AV = require('leancloud-storage')
+import AV from 'leancloud-storage'
 
 Vue.use(VueRouter)
 
@@ -27,9 +27,6 @@ const router = new VueRouter({
           tabbar: false,
           navbar: false
         })
-        if (AV.User.current() !== null) {
-          next('/yujian')
-        }
         next()
       }
     },
@@ -104,11 +101,11 @@ const router = new VueRouter({
 // 定义全局路由守卫
 // 判断是否登录，若未登录，会先跳转到登录页面
 router.beforeEach((to, from, next) => {
-  if (AV.User.current() === undefined && from.path !== '/login') {
-    console.log('Have not login, please login first.')
-    next('/login')
-  } else {
+  if (to.path === '/login') {
     next()
+  } else if (AV.User.current() === null) {
+    console.log('There is no user, so you are loading to login now......')
+    next('/login')
   }
 })
 

@@ -5,39 +5,41 @@
   <div class='listFrame' :style='frameStyle'>
     <ul class='msgList'>
       <li class='fresh'>加载中......</li>
-      <li class='msgs' v-for='msg in msgList' :key='msg.name' @click='handleMsgsClick()'>
-        <img class='avatar' :src='msg.contact.avatar' alt='avatar'>
-        <div class='msg'>
-          <div class='msgTitle'>
-            <h3 class='name'>{{msg.contact.name}}</h3>
-            <time class='msgTime'>{{msg.msgTime}}</time>
-          </div>
-          <div class='msgState'>
-            <p class='leastMsg'>{{msg.lastMsg}}</p>
-            <div>
-              <h5 class='newNum'>{{msg.newMsgNum}}</h5>
+        <li class='msgs' v-for='conversation in conversations' :key='conversation.id' @click='handleMsgsClick'>
+          <img class='avatar' :src='conversation.contact.avatar' alt='avatar'>
+          <div class='msg'>
+            <div class='msgTitle'>
+              <h3 class='name'>{{conversation.contact.name}}</h3>
+              <time class='msgTime'>{{conversation.info.lastMsgAt}}</time>
+            </div>
+            <div class='msgState'>
+              <p class='leastMsg'>{{conversation.info.lastMsg}}</p>
+              <div>
+                <h5 class='newNum'>{{conversation.info.unreadCount}}</h5>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
-      <li class='msgNum'>{{msgList.length}}个对话</li>
+        </li>
+      <li class='msgNum'>{{conversations.length}}个对话</li>
     </ul>
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
-import msgs from '../../static/msgs'
+import { mapState } from 'vuex'
 import store from '../store/index'
 
 export default {
   data () {
     return {
-      msgList: msgs,
       frameStyle: {
         height: '0px'
       }
     }
+  },
+  computed: {
+    ...mapState(['conversations'])
   },
   methods: {
     handleMsgsClick () {
@@ -52,6 +54,8 @@ export default {
     // 初始化better-scroll
     this.$nextTick(() => {
       this.scroll = new BScroll('.listFrame', {
+        tap: true,
+        click: true,
         fade: true,
         interactive: false
       })

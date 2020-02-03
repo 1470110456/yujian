@@ -18,8 +18,7 @@
 <script>
 import store from '../store'
 import router from '../router'
-const AV = require('leancloud-storage')
-const { realtime } = require('../leancloud')
+import AV from 'leancloud-storage'
 
 export default {
   data () {
@@ -34,27 +33,13 @@ export default {
         console.log('--------------------------------------------------')
         console.log('|' + 'There is already a user. Current user is :' + AV.User.current().get('name') + '|')
         console.log('--------------------------------------------------')
-        router.push('/yujian')
+        router.replace('/yujian')
       } else {
-        AV.User.logIn(this.username, this.password).then(function (user) {
-          // 打印当前用户的名字
-          console.log('---------------------------------------')
-          console.log('|' + 'Login success, current user is:' + AV.User.current().get('name') + '|')
-          console.log('---------------------------------------')
-          if (store.state.imClient === undefined) {
-            // 登录即时通讯服务器
-            realtime.createIMClient(AV.User.current()).then((AVIMClient) => {
-              // 将获得的IMClient全局保存
-              store.commit('setClient', AVIMClient)
-              console.log('-------------------------')
-              console.log('|' + 'Realtime login success.' + '|')
-              console.log('-------------------------')
-              router.push('/yujian')
-            }).catch(console.error)
-          }
-          // 设置头像图片
-          store.commit('setAvatar', AV.User.current().attributes.avatar.attributes.url)
-        }).catch(console.error)
+        store.dispatch('login',
+          {
+            username: this.username,
+            password: this.password
+          })
       }
     },
     onLogoutClick () {
@@ -63,18 +48,18 @@ export default {
         console.log('|' + 'There is no user, so you can not logout !' + '|')
         console.log('-------------------------------------------')
       } else {
-        // 登出数据存储服务器
-        AV.User.logOut().then((user) => {
-          console.log('-----------------')
-          console.log('|' + 'Logout success.' + '|')
-          console.log('-----------------')
-          // 登出即时通讯服务器
-          store.state.imClient.close().then(function () {
-            // 将全局保存的IMClient设置为空
-            store.commit('setClient', undefined)
-            console.log('-----------------------')
-            console.log('|' + 'Realtime out success.' + '|')
-            console.log('-----------------------')
+        // 登出即时通讯服务器
+        store.state.imClient.close().then(function () {
+          // 将全局保存的IMClient设置为空
+          store.commit('setClient', undefined)
+          console.log('-----------------------')
+          console.log('|' + 'Realtime out success.' + '|')
+          console.log('-----------------------')
+          // 登出数据存储服务器
+          AV.User.logOut().then(() => {
+            console.log('-----------------')
+            console.log('|' + 'Logout success.' + '|')
+            console.log('-----------------')
           }).catch(console.error)
         }).catch(console.error)
       }
