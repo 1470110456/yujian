@@ -22,9 +22,10 @@ import Sex from '../views/Center/Sex'
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
-// 引入两个二级子组件
+// 引入两个二级子组件 +1
 import TheBelt from '../views/YuJian/TheBelt'
 import TheRoad from '../views/YuJian/TheRoad'
+import thingsroom from '../views/thingsroom'
 // 引入六个三级子组件（一带）
 import Germany from '../views/YuJian/TheBeltCountry/Germany'
 import Iran from '../views/YuJian/TheBeltCountry/Iran'
@@ -59,7 +60,14 @@ const router = new VueRouter({
     },
     {
       path: '/things',
-      component: Things
+      component: Things,
+      // 动态详情页
+      children: [
+        {
+          path: '/things/thingsroom',
+          component: thingsroom
+        }
+      ]
     },
     {
       path: '/yujian',
