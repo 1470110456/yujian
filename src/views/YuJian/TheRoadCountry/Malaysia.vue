@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>malaysia</div>
 </template>
 
 <script>

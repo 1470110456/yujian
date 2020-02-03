@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>netheriands</div>
 </template>
 
 <script>
