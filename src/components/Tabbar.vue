@@ -5,13 +5,13 @@
   <div>
     <nav>
       <ul>
-        <router-link active-class="ripple" tag="li" to="/yujian" replace>
+        <router-link active-class="ripple" tag="li" to="/yujian">
           <img src="../iconfont/glob.svg" alt="语见" />
         </router-link>
-        <router-link active-class="ripple" tag="li" to="/msglist" replace>
+        <router-link active-class="ripple" tag="li" to="/msglist">
           <img src="../iconfont/msg.svg" alt="消息"/>
         </router-link>
-        <router-link active-class="ripple" tag="li" to="/things" replace>
+        <router-link active-class="ripple" tag="li" to="/things">
           <img src="../iconfont/things.svg" alt="动态"/>
         </router-link>
       </ul>
@@ -27,6 +27,10 @@ export default {
 
 <style lang="scss" scoped>
 
+  * {
+    margin: 0;
+    padding: 0;
+  }
   nav {
     background: white;
     position: fixed;
