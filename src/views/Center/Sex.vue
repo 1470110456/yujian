@@ -1,12 +1,18 @@
-// 修改昵称
+// 设置性别
 <template>
   <div>
-    <div class="center" v-show="$store.state.isCenterbarShow">
-      修改昵称
+    <div class="father">
+      <i class="set">设置性别</i>
       <i @click="ChangeName()">完成</i>
-      <span v-show="isShow">更改成功!</span>
     </div>
-    <div class="father"><input id="modify" maxlength="36" type="text" v-model="mytext"></div>
+    <div class="boy">
+      <input checked name="radios" type="radio" v-model="param" value="男"><label>男</label>
+    </div>
+    <div class="girl">
+      <input name="radios" type="radio" v-model="param" value="女"><label>女</label>
+    </div>
+
+    <span v-show="isShow">设置成功!</span>
   </div>
 </template>
 
@@ -15,15 +21,16 @@
   export default {
     data() {
       return {
-        mytext: AV.User.current().attributes.name,
         isShow: false,
         // 倒计时
-        count: ''
+        count: '',
+        // 设置默认值为1，即设置第一个单选框为选中状态
+        param: AV.User.current().attributes.sex
       }
     },
     methods: {
       ChangeName() {
-        AV.User.current().attributes.name = this.mytext
+        AV.User.current().attributes.sex = this.param
         // 以下实现 更改成功的提示
         this.isShow = true
         // 10s后跳转页面
@@ -50,63 +57,50 @@
       // 在加载avatar组件时 实现center页面的隐藏
       this.$store.commit('HideCenterbar', false)
     },
-    mounted() {
-      document.getElementById('modify').focus()
-    },
     beforeDestroy() {
       // 在退出avatar组件时 实现center页面的显现
       this.$store.commit('ShowCenterbar', true)
     }
   }
+
 </script>
+
 <style lang="scss" scoped>
   * {
     margin: 0;
     padding: 0;
   }
 
-  .center {
-    position: relative;
-    font-style: normal;
-    font-weight: 700;
-    color: #3a3ae3;
-    display: block !important;
-    background-color: white;
-    height: 45px;
-    line-height: 45px;
-    margin: 0 0 1px 0;
-    border-radius: 0 0 10px 10px;
-  }
-
   i {
     font-style: normal;
-    position: absolute;
-    font-weight: 400;
-    right: 15px;
-    font-size: 17px;
-    color: #000;
   }
 
   .father {
-    display: flex;
-    background-color: white;
-    margin: 5px 0px;
-  }
-
-  #modify {
+    position: relative;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 50px;
-    line-height: 50px;
-    text-indent: 0.2em;
-    font-size: 17px;
-    border-left: 0px;
-    border-top: 0px;
-    border-right: 0px;
-    border-bottom: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #666666;
-    margin: 0 3px;
-    outline: none;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+
+    i {
+      position: absolute;
+      font-weight: 400;
+      right: 15px;
+      font-size: 17px;
+      color: #000;
+    }
+
+    .set {
+      width: 100px;
+      height: auto;
+      position: absolute;
+      font-weight: 700;
+      left: 38%;
+      color: #3a3ae3;
+    }
   }
 
   span {
@@ -126,4 +120,36 @@
       color: whitesmoke;
     }
   }
+
+  .boy {
+    position: relative;
+    left: 0;
+    margin: 5px 0 0 0;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    border-bottom: 1px solid #f1ebeb;
+  }
+
+  input {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    text-align: center;
+  }
+
+  label {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+  }
+
+  .girl {
+    position: relative;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+  }
+
 </style>

@@ -92,10 +92,10 @@
 
     img {
       position: absolute;
-      top: 23%;
+      top: 20%;
       left: 0;
       width: 100%;
-      height: 360px;
+      height: 390px;
       /*border-radius: 50%;*/
     }
   }

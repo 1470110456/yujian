@@ -16,6 +16,8 @@ import Perdecri from '../views/Center/Perdecri'
 import Perinfo from '../views/Center/Perinfo'
 // 导入Center组件中的name 昵称组件
 import Name from '../views/Center/Name'
+// 导入Center组件中的sex 性别组件
+import Sex from '../views/Center/Sex'
 // 导入avatar组件中的头像库的组件
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
@@ -175,6 +177,10 @@ const router = new VueRouter({
         {
           path: '/center/name',
           component: Name
+        },
+        {
+          path: '/center/sex',
+          component: Sex
         }
       ]
     },
