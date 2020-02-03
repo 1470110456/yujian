@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import router from '../router'
 import BScroll from 'better-scroll'
 import { mapState } from 'vuex'
 import store from '../store/index'
@@ -43,7 +44,7 @@ export default {
   },
   methods: {
     handleMsgsClick () {
-      this.$router.push('/ChatRoom')
+      router.push('/chatRoom', () => {})
     }
   },
   mounted () {

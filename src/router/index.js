@@ -7,10 +7,11 @@ import Things from '../views/Things'
 import Center from '../views/Center'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
-import AV from 'leancloud-storage'
+// import AV from 'leancloud-storage'
 
 Vue.use(VueRouter)
 
+console.log('router')
 const router = new VueRouter({
   // 路由模式：hash，另外一种是history模式，具体有何区别请查阅文档
   mode: 'hash',
@@ -79,7 +80,7 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/ChatRoom',
+      path: '/chatRoom',
       component: ChatRoom,
       // 进入登录页面之前，设置各组件显示状态
       beforeEnter: (to, from, next) => {
@@ -100,13 +101,13 @@ const router = new VueRouter({
 
 // 定义全局路由守卫
 // 判断是否登录，若未登录，会先跳转到登录页面
-router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
-    next()
-  } else if (AV.User.current() === null) {
-    console.log('There is no user, so you are loading to login now......')
-    next('/login')
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/login') {
+//     next()
+//   } else if (AV.User.current() === null) {
+//     console.log('There is no user, so you are loading to login now......')
+//     next('/login')
+//   }
+// })
 
 export default router

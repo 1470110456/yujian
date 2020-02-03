@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from '../router'
 import AV from 'leancloud-storage'
+const { realtime } = require('../leancloud')
 const { IMClient } = require('leancloud-realtime')
+
+// 实例化用户查询
+const query = new AV.Query('_User')
 
 Vue.use(Vuex)
 
@@ -17,6 +20,7 @@ export default new Vuex.Store({
     imClient: IMClient,
     // 全局组件显示状态管理器
     // 使用时不必要将所有组件的状态都传到mutation中，只要将要管理的组件的状态传过去即可
+    // 例：我想在某个地方显示navbar，那我只需要写 store.commit('setShow', { navbar: true }) 即可
     isShow: {
       tabbar: false,
       navbar: false
@@ -80,18 +84,16 @@ export default new Vuex.Store({
         console.log('|' + 'Login success, current user is:' + AV.User.current().get('name') + '|')
         console.log('---------------------------------------')
         if (context.state.imClient === undefined) {
-          const realtime = require('../leancloud')
           // 登录即时通讯服务器
           realtime.createIMClient(AV.User.current()).then((AVIMClient) => {
-            // 查询包含当前用户的conversations
-            AVIMClient.query.containedIn('m', [AV.User.current().id])
-              .find()
-              .then(function (conversations) {
-                context.dispatch('setConversations', conversations)
-                router.replace('/yujian')
-              })
             // 将获得的IMClient全局保存
             context.commit('setClient', AVIMClient)
+            // 查询包含当前用户的conversations
+            AVIMClient.getQuery().containedIn('m', [AV.User.current().id])
+              .find()
+              .then(function (conversations) {
+                return context.dispatch('setConversations', conversations)
+              })
             // 当前用户被添加至某个对话时的事件
             AVIMClient.on(Event.INVITED,
               function invitedEventHandler (payload, conversation) {
@@ -137,7 +139,6 @@ export default new Vuex.Store({
             console.log('-------------------------')
             console.log('|' + 'Realtime login success.' + '|')
             console.log('-------------------------')
-            router.push('/yujian')
           }).catch(console.error)
         }
         // 设置头像图片
@@ -146,8 +147,6 @@ export default new Vuex.Store({
     },
     // 设置消息对话列表
     setConversations (context, conversations) {
-      // 实例化用户查询
-      const query = new AV.Query('_User')
       // 倒序遍历以截取信息
       for (let c = conversations.length - 1; c >= 0; c--) {
         // 设置查询条件

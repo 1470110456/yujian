@@ -33,13 +33,14 @@ export default {
         console.log('--------------------------------------------------')
         console.log('|' + 'There is already a user. Current user is :' + AV.User.current().get('name') + '|')
         console.log('--------------------------------------------------')
-        router.replace('/yujian')
+        router.replace('/yujian').catch(console.error)
       } else {
         store.dispatch('login',
           {
             username: this.username,
             password: this.password
           })
+        router.replace('/yujian').catch(console.error)
       }
     },
     onLogoutClick () {
@@ -48,18 +49,18 @@ export default {
         console.log('|' + 'There is no user, so you can not logout !' + '|')
         console.log('-------------------------------------------')
       } else {
-        // 登出即时通讯服务器
-        store.state.imClient.close().then(function () {
-          // 将全局保存的IMClient设置为空
-          store.commit('setClient', undefined)
-          console.log('-----------------------')
-          console.log('|' + 'Realtime out success.' + '|')
-          console.log('-----------------------')
-          // 登出数据存储服务器
-          AV.User.logOut().then(() => {
-            console.log('-----------------')
-            console.log('|' + 'Logout success.' + '|')
-            console.log('-----------------')
+        // 登出数据存储服务器
+        AV.User.logOut().then(() => {
+          console.log('-----------------')
+          console.log('|' + 'Logout success.' + '|')
+          console.log('-----------------')
+          // 登出即时通讯服务器
+          store.state.imClient.close().then(() => {
+            // 将全局保存的IMClient设置为空
+            store.commit('setClient', undefined)
+            console.log('-----------------------')
+            console.log('|' + 'Realtime out success.' + '|')
+            console.log('-----------------------')
           }).catch(console.error)
         }).catch(console.error)
       }
