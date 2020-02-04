@@ -43,9 +43,23 @@ export default new Vuex.Store({
       //     avatar: ''
       //   }
       // }
-    ]
+    ],
+    // yujian页面导航栏的隐与藏的状态
+    isBarShow: true,
+    // center页面列表的隐藏的显现的状态
+    isCenterbarShow: true,
+    // 获取头像路径
+    url: '',
+    // 头像库的显现
+    isAvatarShow: true,
+    // 创建name 修改昵称功能的呈现
+    isNameCreate: true,
+    // 创建sex 设置性别功能的呈现
+    isSexCreate: false,
+    // 创建sex 设置个人描述功能的呈现
+    isDeriCreate: false
   },
-  // 状态修改的唯一地方
+  // 状态修改的唯一地方！
   mutations: {
     // 设置顶部导航栏显示的名称
     ansWhere (state, where) {
@@ -66,6 +80,58 @@ export default new Vuex.Store({
     // 设置组件的显示状态
     setShow (state, component) {
       state.isShow = { ...state.isShow, ...component }
+    },
+    // 实现Centerbar的隐藏
+    HideCenterbar (state, data) {
+      state.isCenterbarShow = data
+    },
+    // 实现Centerbar的显现
+    ShowCenterbar (state, data) {
+      state.isCenterbarShow = data
+    },
+    // 实现nav和tabbar的隐藏
+    Hidebar (state, data) {
+      state.isBarShow = data
+    },
+    // 实现nav和tab bar的显现
+    Showbar (state, data) {
+      state.isBarShow = data
+    },
+    // 获取图片的路径
+    getAvatar (state, data) {
+      state.url = data
+    },
+    // 实现avatar组件的隐藏
+    HideAvatar (state, data) {
+      state.isAvatarShow = data
+    },
+    // 实现avatar组件的显现
+    ShowAvatar (state, data) {
+      state.isAvatarShow = data
+    },
+    // 实现修改名称功能的显现
+    ShowName (state, data) {
+      state.isNameCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideName (state, data) {
+      state.isNameCreate = data
+    },
+    // 实现修改名称功能的显现
+    ShowSex (state, data) {
+      state.isSexCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideSex (state, data) {
+      state.isSexCreate = data
+    },
+    // 实现修改名称功能的显现
+    ShowDeri (state, data) {
+      state.isDeriCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideDeri (state, data) {
+      state.isDeriCreate = data
     },
     // 设置对话列表
     setConversations (state, conversations) {

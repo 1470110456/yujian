@@ -4,7 +4,16 @@ import store from '../store'
 import MsgList from '../views/MsgList'
 import YuJian from '../views/YuJian'
 import Things from '../views/Things'
+// 导入Center组件
 import Center from '../views/Center'
+// 导入Center组件中的avatar头像组件
+import Avatar from '../views/Center/Avatar'
+// 导入Center组件中的mytid我的动态组件
+import Mytid from '../views/Center/Mytid'
+// 导入Center组件中的perinfo 个人信息的组件
+import Perinfo from '../views/Center/Perinfo'
+// 导入avatar组件中的头像库的组件
+import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
 import Login from '../views/Login'
 import ThingsRoom from '../views/ThingsRoom'
@@ -73,6 +82,7 @@ const router = new VueRouter({
         next()
       }
     },
+    // 定义center的组件
     {
       path: '/center',
       component: Center,
@@ -83,7 +93,29 @@ const router = new VueRouter({
           navbar: true
         })
         next()
-      }
+      },
+      //  定义center下的子组件
+      children: [
+        {
+          path: '/center/avatar',
+          component: Avatar,
+          children: [
+            {
+              path: '/center/avatar/avatarshop',
+              name: 'headShop',
+              component: Avatarshop
+            }
+          ]
+        },
+        {
+          path: '/center/mytid',
+          component: Mytid
+        },
+        {
+          path: '/center/perinfo',
+          component: Perinfo
+        }
+      ]
     },
     {
       path: '/chatRoom',

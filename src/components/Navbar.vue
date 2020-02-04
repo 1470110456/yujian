@@ -4,10 +4,11 @@
 <template>
   <div>
     <nav>
+<!--      导向center路由-->
       <ul>
-        <li class='avatarContain'>
-          <img class='avatar' :src='avatar' alt='中心'>
-        </li>
+        <router-link tag="li" to="/center">
+          <img :src='avatar' alt="中心" class='avatar'/>
+        </router-link>
         <li class='title'>
           <h3>{{whereHere}}</h3>
         </li>
