@@ -27,6 +27,7 @@ export default {
   }
 
   .YJfather {
+    display: none;
     margin-top: 50px;
     list-style: none;
     background-color: white;

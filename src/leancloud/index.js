@@ -25,5 +25,3 @@ export const realtime = new Realtime({
   server: serverURLs,
   plugins: [TypedMessagesPlugin, Event]
 })
-
-console.log('leancloud')

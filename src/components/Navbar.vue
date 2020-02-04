@@ -5,14 +5,14 @@
   <div>
     <nav>
       <ul>
-        <li class='avatar'>
-          <img class='avatar' :src='avatar' alt="中心" ref='avatar'>
+        <li class='avatarContain'>
+          <img class='avatar' :src='avatar' alt='中心'>
         </li>
         <li class='title'>
-          <h4>{{whereHere}}</h4>
+          <h3>{{whereHere}}</h3>
         </li>
         <li>
-          <img class='setting' src="../iconfont/setting.svg" alt="设置"/>
+          <img class='setting' :src='rightImg' alt='设置'/>
         </li>
       </ul>
     </nav>
@@ -27,9 +27,12 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['avatar', 'whereHere'])
+    ...mapState(['avatar', 'rightImg', 'whereHere'])
   },
-  methods: {}
+  methods: {},
+  beforeUpdate () {
+    console.log('update !')
+  }
 }
 </script>
 
@@ -38,8 +41,8 @@ export default {
     background: white;
     position: fixed;
     width: 100%;
-    top: -5px;
-    border-radius: 10px;
+    top: 0;
+    border-radius: 0 0 0.75rem 0.75rem;
 
     ul {
       list-style-type: none;
@@ -47,27 +50,27 @@ export default {
 
       li {
         flex: 1;
-        line-height: 50px;
+        margin: 0.5rem 0 0.5rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .avatar {
-          width: 30px;
-          height: 30px;
+          width: 1.75rem;
+          height: 1.75rem;
           border-radius: 90%;
-          margin-bottom: -13px;
         }
         .setting{
-          width: 30px;
-          height: 30px;
-          margin-bottom: -13px;
+          width: 1.75rem;
+          height: 1.75rem;
         }
+      }
+      .title{
+        opacity: 0.6;
+        color: blue;
+        flex: 2;
       }
     }
   }
-  .title{
-    margin-top: 20px;
-    line-height: 100%;
-    opacity: 0.6;
-    color: blue;
-    flex: 2;
-  }
+
 </style>

@@ -92,8 +92,10 @@ const router = new VueRouter({
       beforeEnter: (to, from, next) => {
         store.commit('setShow', {
           tabbar: false,
-          navbar: false
+          navbar: true
         })
+        // 设置导航栏右边图标
+        store.commit('setNavRight', require('../assets/iconfont/more.svg'))
         next()
       }
     },
@@ -106,14 +108,15 @@ const router = new VueRouter({
 })
 
 // 定义全局路由守卫
-// 判断是否登录，若未登录，会先跳转到登录页面
 // router.beforeEach((to, from, next) => {
-//   if (store.state.user === null) {
-//     console.log('Have not login, please login first.')
-//     next('/login')
-//   } else {
-//     next()
+//   if (to.path !== '/login') {
+//     if (AV.User.current() !== null && store.state.imClient === undefined) {
+//       store.dispatch('setIMClient', AV.User.current())
+//       store.commit('setAvatar', AV.User.current().attributes.avatar.attributes.url)
+//       router.replace('/yujian').catch(console.error)
+//     }
 //   }
+//   next()
 // })
 
 export default router

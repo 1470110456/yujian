@@ -11,6 +11,9 @@
 import { mapState } from 'vuex'
 import tabbar from './components/Tabbar'
 import navbar from './components/Navbar'
+import AV from 'leancloud-storage'
+import store from './store'
+import router from './router'
 
 export default {
   data () {
@@ -23,6 +26,13 @@ export default {
   components: {
     tabbar: tabbar,
     navbar: navbar
+  },
+  mounted () {
+    if (AV.User.current() !== null && store.state.imClient === undefined) {
+      store.dispatch('setIMClient', AV.User.current())
+      store.commit('setAvatar', AV.User.current().attributes.avatar.attributes.url)
+      router.replace('/yujian').catch(console.error)
+    }
   }
 }
 </script>

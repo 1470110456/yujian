@@ -12,19 +12,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // 全局状态存储的地方
   state: {
-    // test
-    arr: [{
-      id: 1,
-      a: 'a1'
-    },
-    {
-      id: 2,
-      a: 'a2'
-    }],
     // 顶部导航栏显示的名称的状态
     whereHere: String,
     // 用户头像
-    avatar: '../iconfont/personalcenter.svg',
+    avatar: require('../assets/iconfont/personalcenter.svg'),
+    // 导航栏右侧图标
+    rightImg: require('../assets/iconfont/more.svg'),
     // 全局IMClient
     imClient: IMClient,
     // 全局组件显示状态管理器
@@ -54,13 +47,6 @@ export default new Vuex.Store({
   },
   // 状态修改的唯一地方
   mutations: {
-    // test
-    setArr (state, b) {
-      const c = state.arr[1]
-      c.a = b.b
-      state.arr.splice(b.index, 1)
-      state.arr.unshift(c)
-    },
     // 设置顶部导航栏显示的名称
     ansWhere (state, where) {
       state.whereHere = where
@@ -68,6 +54,10 @@ export default new Vuex.Store({
     // 设置用户头像
     setAvatar (state, avatar) {
       state.avatar = avatar
+    },
+    // 设置导航栏右边图片
+    setNavRight (state, img) {
+      state.rightImg = img
     },
     // 设置当前IMClient
     setClient (state, client) {
@@ -115,51 +105,10 @@ export default new Vuex.Store({
               .then(function (conversations) {
                 return context.dispatch('setConversations', conversations)
               })
-            // 当前用户被添加至某个对话时的事件
-            AVIMClient.on(Event.INVITED,
-              function invitedEventHandler (payload, conversation) {
-                // 打印参数信息
-                console.log(payload)
-                // 引入并实例化用户查询
-                const query = new AV.Query('_User')
-                query.equalTo('objectId', payload.invitedBy)
-                  .find()
-                  .then((user) => {
-                    // 将必要的conversation信息提交至mutation来修改对话消息列表状态
-                    context.commit('setConversations',
-                      {
-                        id: conversation.id,
-                        info: {
-                          lastMsg: conversation.lastMessage,
-                          lastMsgAt: conversation.lastMessageAt,
-                          unreadCount: conversation.unreadMessagesCount
-                        },
-                        contact: {
-                          name: user.attributes.name,
-                          avatar: user.attributes.avatar.attributes.url
-                        }
-                      })
-                  })
-              })
-            // 当前用户收到了某一条消息，可以通过响应 Event.MESSAGE 这一事件来处理。
-            AVIMClient.on(Event.MESSAGE,
-              function (message, conversation) {
-                console.log('收到新消息：' + message.text)
-                // 获取到本地对应的conversation的索引值
-                const index = context.state.conversations.findIndex((c, i, conversations) => {
-                  return c.id === conversation.id
-                })
-                // 将必要信息传递给mutation以修改对应的conversation
-                context.commit('setNewConver',
-                  {
-                    index: index,
-                    lastMsg: message.text,
-                    lastMsgAt: message.timestamp.toString().slice(6, 24)
-                  })
-              })
             console.log('-------------------------')
             console.log('|' + 'Realtime login success.' + '|')
             console.log('-------------------------')
+            return context.dispatch('clientEventBind', AVIMClient)
           }).catch(console.error)
         }
         // 设置头像图片
@@ -195,6 +144,71 @@ export default new Vuex.Store({
               })
           })
       }
+    },
+    // 登录即时通讯服务器Action
+    setIMClient (context, user) {
+      console.log('与即时通讯服务器断线重连中......')
+      realtime.createIMClient(user).then(function (AVIMClient) {
+        // 将该服务器全局保存
+        context.commit('setClient', AVIMClient)
+        console.log('重连成功！')
+        console.log('查询消息记录......')
+        // 查询包含当前用户的conversations
+        AVIMClient.getQuery().containedIn('m', [AV.User.current().id])
+          .find()
+          .then(function (conversations) {
+            console.log('查询成功！')
+            // 分发给setConversation Action，由它截取必要信息并设置本地conversation
+            return context.dispatch('setConversations', conversations)
+          })
+        // 分发给clientEventBind Action，由它进行即时通讯服务器的事件绑定
+        return context.dispatch('clientEventBind', AVIMClient)
+      })
+    },
+    // 即时通讯服务器事件绑定Action
+    clientEventBind (context, AVIMClient) {
+      // 当前用户被添加至某个对话时的事件
+      AVIMClient.on(Event.INVITED,
+        function invitedEventHandler (payload, conversation) {
+          // 打印参数信息
+          console.log(payload)
+          // 引入并实例化用户查询
+          const query = new AV.Query('_User')
+          query.equalTo('objectId', payload.invitedBy)
+            .find()
+            .then((user) => {
+              // 将必要的conversation信息提交至mutation来修改对话消息列表状态
+              context.commit('setConversations',
+                {
+                  id: conversation.id,
+                  info: {
+                    lastMsg: conversation.lastMessage,
+                    lastMsgAt: conversation.lastMessageAt,
+                    unreadCount: conversation.unreadMessagesCount
+                  },
+                  contact: {
+                    name: user.attributes.name,
+                    avatar: user.attributes.avatar.attributes.url
+                  }
+                })
+            })
+        })
+      // 当前用户收到了某一条消息，可以通过响应 Event.MESSAGE 这一事件来处理。
+      AVIMClient.on(Event.MESSAGE,
+        function (message, conversation) {
+          console.log('收到新消息：' + message.text)
+          // 获取到本地对应的conversation的索引值
+          const index = context.state.conversations.findIndex((c, i, conversations) => {
+            return c.id === conversation.id
+          })
+          // 将必要信息传递给mutation以修改对应的conversation
+          context.commit('setNewConver',
+            {
+              index: index,
+              lastMsg: message.text,
+              lastMsgAt: message.timestamp.toString().slice(6, 24)
+            })
+        })
     }
   },
   modules: {}

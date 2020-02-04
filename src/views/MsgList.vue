@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     handleMsgsClick () {
+      store.commit('ansWhere', '聊天室')
       router.push('/chatRoom', () => {})
     }
   },

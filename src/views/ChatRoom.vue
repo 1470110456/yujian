@@ -21,13 +21,10 @@ export default {
   computed: {
     ...mapState(['arr'])
   },
-  methods: {
-    test () {
-      store.commit('setArr', {
-        index: 1,
-        b: 'b'
-      })
-    }
+  methods: {},
+  beforeRouteLeave (to, from, next) {
+    store.commit('setNavRight', require('../assets/iconfont/setting.svg'))
+    next()
   }
 }
 </script>

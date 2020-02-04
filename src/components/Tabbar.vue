@@ -6,13 +6,13 @@
     <nav>
       <ul>
         <router-link active-class="ripple" tag="li" to="/yujian">
-          <img src="../iconfont/glob.svg" alt="语见" />
+          <img src="../assets/iconfont/glob.svg" alt="语见" />
         </router-link>
         <router-link active-class="ripple" tag="li" to="/msglist">
-          <img src="../iconfont/msg.svg" alt="消息"/>
+          <img src="../assets/iconfont/msg.svg" alt="消息"/>
         </router-link>
         <router-link active-class="ripple" tag="li" to="/things">
-          <img src="../iconfont/things.svg" alt="动态"/>
+          <img src="../assets/iconfont/things.svg" alt="动态"/>
         </router-link>
       </ul>
     </nav>
@@ -26,17 +26,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  * {
-    margin: 0;
-    padding: 0;
-  }
   nav {
     background: white;
     position: fixed;
     width: 100%;
-    bottom: -10px;
-    border-radius: 10px;
+    bottom: 0;
+    border-radius: 0.75rem 0.75rem 0 0;
 
     ul {
       list-style-type: none;
@@ -44,12 +39,14 @@ export default {
 
       li {
         flex: 1;
-        padding-top: 5px;
-        line-height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         img {
-          width: 30px;
-          height: 30px;
+          margin: 0.75rem 0 0.75rem 0;
+          width: 1.75rem;
+          height: 1.75rem;
         }
       }
     }
@@ -57,11 +54,8 @@ export default {
 
   // 选中时的效果
   .ripple {
-    padding-left: 10px;
-    padding-right: 10px;
-    box-shadow: 0 36px 54px -15px blue;
-    border-radius: 10px;
+    box-shadow: 0 2rem 3rem -1rem blue;
+    border-radius: 0.75rem 0.75rem 0 0;
     transition-duration: 0.3s;
-    color: black;
   }
 </style>
