@@ -47,10 +47,10 @@
     data() {
       return {
         // 个人描述最大的字数
-        remnant: 56,
+        remnant: 56 - AV.User.current().attributes.perdecrib.length,
         // 动态修改姓名
         mytext: AV.User.current().attributes.name,
-        // 设置默认值为1，即设置第一个单选框为选中状态
+        // 即设置第一个单选框为选中状态
         param: AV.User.current().attributes.sex,
         // 动态修改个人描述
         myDeri: AV.User.current().attributes.perdecrib,
