@@ -185,11 +185,7 @@ const router = new VueRouter({
     }
   ]
 })
-// 修改路由的push函数
-// const originalPush = VueRouter.prototype.push
-// VueRouter.prototype.push = function push (location) {
-//   return originalPush.call(this, location).catch(err => err)
-// }
+
 // 定义全局路由守卫
 // 判断是否登录，若未登录，会先跳转到登录页面
 // router.beforeEach((to, from, next) => {

@@ -18,34 +18,34 @@
   import centerbar from '@/components/Centerbar'
 
   const AV = require('leancloud-storage')
-  export default {
-    data() {
-      return {
-        isActive: true
-      }
-    },
-    beforeMount() {
-      // 在加载center组件时 实现tabbar和navbar的隐藏
-      this.$store.commit('Hidebar', false)
-    },
-    beforeDestroy() {
-      // 在退出center组件时 实现tabbar和navbar的显现
-      this.$store.commit('Showbar', true)
-    },
-    components: {
-      centerbar: centerbar
-    },
-    computed: {
-      getAvatar() {
-        return AV.User.current().attributes.avatar.attributes.url
-      }
-    },
-    methods: {
-      getBigAvatar() {
-        this.isActive = !this.isActive
-      }
+export default {
+  data() {
+    return {
+      isActive: true
+    }
+  },
+  beforeMount() {
+    // 在加载center组件时 实现tabbar和navbar的隐藏
+    this.$store.commit('Hidebar', false)
+  },
+  beforeDestroy() {
+    // 在退出center组件时 实现tabbar和navbar的显现
+    this.$store.commit('Showbar', true)
+  },
+  components: {
+    centerbar: centerbar
+  },
+  computed: {
+    getAvatar() {
+      return AV.User.current().attributes.avatar.attributes.url
+    }
+  },
+  methods: {
+    getBigAvatar() {
+      this.isActive = !this.isActive
     }
   }
+}
 
 </script>
 
