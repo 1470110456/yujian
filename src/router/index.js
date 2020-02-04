@@ -10,7 +10,7 @@ import Center from '../views/Center'
 import Avatar from '../views/Center/Avatar'
 // 导入Center组件中的mytid我的动态组件
 import Mytid from '../views/Center/Mytid'
-// 导入Center组件中的perinfo 个人信息组件
+// 导入Center组件中的perinfo 个人信息的组件
 import Perinfo from '../views/Center/Perinfo'
 // 导入avatar组件中的头像库的组件
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
