@@ -21,8 +21,7 @@
 </template>
 
 <script>
-  import store from '../store/index'
-
+  const AV = require('leancloud-storage')
   export default {
     computed: {
       // 获取当前所在模块的名称
@@ -31,7 +30,7 @@
       },
       // 获取头像
       getAvatar() {
-        return store.state.user.avatar.attributes.url
+        return AV.User.current().attributes.avatar.attributes.url
       }
     }
   }

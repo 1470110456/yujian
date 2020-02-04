@@ -19,7 +19,13 @@ export default new Vuex.Store({
     // 获取头像路径
     url: '',
     // 头像库的显现
-    isAvatarShow: true
+    isAvatarShow: true,
+    // 创建name 修改昵称功能的呈现
+    isNameCreate: true,
+    // 创建sex 设置性别功能的呈现
+    isSexCreate: false,
+    // 创建sex 设置个人描述功能的呈现
+    isDeriCreate: false
   },
   // 状态修改的唯一地方！
   mutations: {
@@ -59,11 +65,37 @@ export default new Vuex.Store({
     getAvatar(state, data) {
       state.url = data
     },
+    // 实现avatar组件的隐藏
     HideAvatar(state, data) {
       state.isAvatarShow = data
     },
+    // 实现avatar组件的显现
     ShowAvatar(state, data) {
       state.isAvatarShow = data
+    },
+    // 实现修改名称功能的显现
+    ShowName(state, data) {
+      state.isNameCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideName(state, data) {
+      state.isNameCreate = data
+    },
+    // 实现修改名称功能的显现
+    ShowSex(state, data) {
+      state.isSexCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideSex(state, data) {
+      state.isSexCreate = data
+    },
+    // 实现修改名称功能的显现
+    ShowDeri(state, data) {
+      state.isDeriCreate = data
+    },
+    // 实现修改名称功能的显现
+    HideDeri(state, data) {
+      state.isDeriCreate = data
     }
   },
   // 涉及到异步操作请用action

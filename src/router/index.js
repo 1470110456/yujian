@@ -10,14 +10,8 @@ import Center from '../views/Center'
 import Avatar from '../views/Center/Avatar'
 // 导入Center组件中的mytid我的动态组件
 import Mytid from '../views/Center/Mytid'
-// 导入Center组件中的avatar个人说明组件
-import Perdecri from '../views/Center/Perdecri'
-// 导入Center组件中的avatar个人信息组件
+// 导入Center组件中的perinfo 个人信息组件
 import Perinfo from '../views/Center/Perinfo'
-// 导入Center组件中的name 昵称组件
-import Name from '../views/Center/Name'
-// 导入Center组件中的sex 性别组件
-import Sex from '../views/Center/Sex'
 // 导入avatar组件中的头像库的组件
 import Avatarshop from '../views/Center/Avatar/Avatarshop'
 import ChatRoom from '../views/ChatRoom'
@@ -175,20 +169,8 @@ const router = new VueRouter({
           component: Mytid
         },
         {
-          path: '/center/perdecri',
-          component: Perdecri
-        },
-        {
           path: '/center/perinfo',
           component: Perinfo
-        },
-        {
-          path: '/center/name',
-          component: Name
-        },
-        {
-          path: '/center/sex',
-          component: Sex
         }
       ]
     },

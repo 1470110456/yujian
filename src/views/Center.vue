@@ -6,7 +6,7 @@
       <i class="center" v-show="$store.state.isCenterbarShow">个人中心</i>
       <centerbar v-show="$store.state.isCenterbarShow"></centerbar>
       <em :class="isActive?'avatar':'bigavatar'" @click="getBigAvatar" v-show="$store.state.isCenterbarShow">
-        <img :src="getAvatar" alt="头像">
+      <img :src="getAvatar" alt="头像">
       </em>
       <!--      路由渲染-->
       <router-view/>
@@ -16,8 +16,8 @@
 <script>
 
   import centerbar from '@/components/Centerbar'
-  import store from '../store/index'
 
+  const AV = require('leancloud-storage')
   export default {
     data() {
       return {
@@ -37,7 +37,7 @@
     },
     computed: {
       getAvatar() {
-        return store.state.user.avatar.attributes.url
+        return AV.User.current().attributes.avatar.attributes.url
       }
     },
     methods: {

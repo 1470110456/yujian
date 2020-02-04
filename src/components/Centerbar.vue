@@ -11,34 +11,27 @@
       </ul>
       <!--      昵称-->
       <ul class="father">
-        <router-link tag="li" to="/center/name">
+        <li @click="nameClick()">
           <em class="word">昵称</em>
           <em id="name">{{getName}}</em>
           <em class="pic">></em>
-        </router-link>
+        </li>
       </ul>
-      <!--      昵称-->
+      <!--      性别-->
       <ul class="father">
-        <router-link tag="li" to="/center/sex">
+        <li @click="sexClick()">
           <em class="word">性别</em>
           <em id="sex">{{getSex}}</em>
           <em class="pic">></em>
-        </router-link>
+        </li>
       </ul>
-      <!--      路由导向个人信息-->
-      <ul class="father">
-        <router-link tag="li" to="/center/perinfo">
-          <em class="word">个人信息</em>
-          <em class="pic">></em>
-        </router-link>
-      </ul>
-
       <!--      路由导向个人描述-->
       <ul class="father">
-        <router-link tag="li" to="/center/perdecri">
+        <li @click="deriClick()">
           <em class="word">个人描述</em>
+          <div id="decri"><p>{{getDecri}}</p></div>
           <em class="pic">></em>
-        </router-link>
+        </li>
       </ul>
       <!--      路由导向我的动态-->
       <ul class="father">
@@ -48,21 +41,56 @@
         </router-link>
       </ul>
     </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 const AV = require('leancloud-storage')
 export default {
-  data () {
+  data() {
     return {}
   },
+  methods: {
+    // 转向perinfo
+    nameClick() {
+      this.$store.commit('ShowName', true)
+      this.$router.push('/center/perinfo')
+      // 实现sex样式的的隐藏
+      this.$store.commit('HideSex', false)
+      // 实现perderi样式的的隐藏
+      this.$store.commit('HideDeri', false)
+    },
+    sexClick() {
+      // 实现sex样式的的显现
+      this.$store.commit('ShowSex', true)
+      // 转向perinfo
+      this.$router.push('/center/perinfo')
+      // 实现name样式的的隐藏
+      this.$store.commit('HideName', false)
+      // 实现perderi样式的的隐藏
+      this.$store.commit('HideDeri', false)
+    },
+    deriClick() {
+      // 实现sex样式的的显现
+      this.$store.commit('ShowDeri', true)
+      // 转向perinfo
+      this.$router.push('/center/perinfo')
+      // 实现name样式的的隐藏
+      this.$store.commit('HideName', false)
+      // 实现sex样式的的隐藏
+      this.$store.commit('HideSex', false)
+    }
+  },
   computed: {
-    getName () {
+    getName() {
       return AV.User.current().attributes.name
     },
     getSex() {
       return AV.User.current().attributes.sex
+    },
+    getDecri() {
+      return AV.User.current().attributes.perdecrib.slice(0, 8) + '...'
     }
   }
 }
@@ -108,6 +136,25 @@ export default {
 
   #sex {
     right: 20px;
+  }
+
+  #decri {
+    position: absolute;
+    right: 22px;
+    width: 128px;
+    height: 40px;
+    bottom: 0;
+    background-color: white;
+    /*强制在一行内显示*/
+    white-space: nowrap;
+    overflow: hidden;
+
+    p {
+      height: 30px;
+      /*width: 100%;*/
+      font-size: 16px;
+      color: #666666;
+    }
   }
 
   .word {
